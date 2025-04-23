@@ -5,10 +5,16 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient"; // Assuming apiRequest is in lib
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label"; // Import Label
 import { Textarea } from "@/components/ui/textarea";
 import { 
-  BookOpen, 
+  BookOpen,
   BadgeHelp, 
   FileText, 
   ShieldCheck, 
@@ -19,13 +25,15 @@ import {
   MapPin,
   Search,
   ArrowLeft,
-  Tag
+  Tag,
+  Loader2 // Import Loader icon
 } from "lucide-react";
 import { GuideSelector } from "@/components/guide/GuideSelector";
 import { GuideContent } from "@/components/guide/GuideContent";
 import { guideCategories, Guide, Category } from "@/components/guide/guide-data";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
+import { useToast } from "@/hooks/use-toast"; // Import the hook
 
 interface SearchResult {
   categoryId: string;
@@ -38,6 +46,7 @@ interface SearchResult {
 }
 
 const HelpPage = () => {
+  const { toast } = useToast();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedGuide, setSelectedGuide] = useState<string | null>(null);
@@ -147,6 +156,60 @@ const HelpPage = () => {
       setSearchResults([]);
     }
   }, [selectedGuide]);
+
+  // --- Contact Form Logic ---
+  const contactFormSchema = z.object({
+    full_name: z.string().min(2, { message: "Full name must be at least 2 characters." }),
+    email: z.string().email({ message: "Please enter a valid email address." }),
+    subject: z.string().min(5, { message: "Subject must be at least 5 characters." }),
+    message: z.string().min(10, { message: "Message must be at least 10 characters." }),
+  });
+
+  type ContactFormData = z.infer<typeof contactFormSchema>;
+
+  const { 
+    register, 
+    handleSubmit, 
+    formState: { errors },
+    reset 
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactFormSchema),
+  });
+
+  const contactMutation = useMutation({
+    mutationFn: (data: ContactFormData) => {
+      return apiRequest("POST", "https://api-hamma-f0bcaabf77ea.herokuapp.com/support/messages/", data);
+    },
+    onSuccess: async (res) => {
+      if (!res.ok) {
+        // Try to parse error message from backend if response is not ok
+        let errorData;
+        try {
+          errorData = await res.json();
+        } catch (e) {
+          console.log(errorData?.detail || `Request failed with status ${res.status}`);
+        }
+        // throw new Error(errorData?.detail || `Request failed with status ${res.status}`);
+      }
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for contacting us. We'll get back to you soon.",
+      });
+      reset(); // Clear the form on success
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Submission Failed",
+        description: error.message || "An unexpected error occurred. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const onSubmitContact = (data: ContactFormData) => {
+    contactMutation.mutate(data);
+  };
+  // --- End Contact Form Logic ---
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -585,34 +648,61 @@ const HelpPage = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <form className="space-y-4">
+                <form className="space-y-4" onSubmit={handleSubmit(onSubmitContact)}>
                   <div className="grid md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <label htmlFor="name" className="text-sm font-medium">
-                        Full Name
-                      </label>
-                      <Input id="name" placeholder="Enter your full name" />
+                    <div className="space-y-1"> {/* Reduced spacing */}
+                      <Label htmlFor="full_name">Full Name</Label>
+                      <Input 
+                        id="full_name" 
+                        placeholder="Enter your full name" 
+                        {...register("full_name")} 
+                      />
+                      {errors.full_name && <p className="text-sm text-red-500">{errors.full_name.message}</p>}
                     </div>
-                    <div className="space-y-2">
-                      <label htmlFor="email" className="text-sm font-medium">
-                        Email Address
-                      </label>
-                      <Input id="email" type="email" placeholder="Enter your email" />
+                    <div className="space-y-1"> {/* Reduced spacing */}
+                      <Label htmlFor="email">Email Address</Label>
+                      <Input 
+                        id="email" 
+                        type="email" 
+                        placeholder="Enter your email" 
+                        {...register("email")} 
+                      />
+                      {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
                     </div>
                   </div>
-                  <div className="space-y-2">
-                    <label htmlFor="subject" className="text-sm font-medium">
-                      Subject
-                    </label>
-                    <Input id="subject" placeholder="What is your message about?" />
+                  <div className="space-y-1"> {/* Reduced spacing */}
+                    <Label htmlFor="subject">Subject</Label>
+                    <Input 
+                      id="subject" 
+                      placeholder="What is your message about?" 
+                      {...register("subject")} 
+                    />
+                    {errors.subject && <p className="text-sm text-red-500">{errors.subject.message}</p>}
                   </div>
-                  <div className="space-y-2">
-                    <label htmlFor="message" className="text-sm font-medium">
-                      Message
-                    </label>
-                    <Textarea id="message" placeholder="Enter your message here" rows={6} />
+                  <div className="space-y-1"> {/* Reduced spacing */}
+                    <Label htmlFor="message">Message</Label>
+                    <Textarea 
+                      id="message" 
+                      placeholder="Enter your message here" 
+                      rows={6} 
+                      {...register("message")} 
+                    />
+                    {errors.message && <p className="text-sm text-red-500">{errors.message.message}</p>}
                   </div>
-                  <Button type="submit" className="w-full md:w-auto">Submit Message</Button>
+                  <Button 
+                    type="submit" 
+                    className="w-full md:w-auto" 
+                    disabled={contactMutation.isPending}
+                  >
+                    {contactMutation.isPending ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      "Submit Message"
+                    )}
+                  </Button>
                 </form>
               </CardContent>
             </Card>

@@ -125,9 +125,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const logoutMutation = useMutation({
     mutationFn: async () => {
-      // Use the assumed new absolute URL for logout - VERIFY THIS ENDPOINT
-      // Use the assumed new absolute URL for logout - VERIFY THIS ENDPOINT
-      await apiRequest("POST", "https://api-hamma-f0bcaabf77ea.herokuapp.com/auth/logout/"); 
+      // Use the relative path /api/logout as requested for logout functionality
+      await apiRequest("POST", "/api/logout"); 
     },
     onSuccess: () => {
       // Remove tokens from localStorage

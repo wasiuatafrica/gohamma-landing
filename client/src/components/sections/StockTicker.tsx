@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 
 interface Stock {
   symbol: string;
-  price: number;
+  current_price: number;
   change: number;
 }
 
@@ -30,8 +30,8 @@ export const StockTicker = () => {
     isLoading: isLoadingStocks, 
     isError: isErrorStocks 
   } = useQuery({
-    queryKey: ['/api/stocks'],
-    staleTime: 60000, // 1 minute
+    queryKey: ['https://api-hamma-f0bcaabf77ea.herokuapp.com/portfolio/popular-stocks/'], // Updated endpoint
+    staleTime: 1000 * 60 * 0.30, // 1 minute
   });
 
   const { 
@@ -43,7 +43,8 @@ export const StockTicker = () => {
     staleTime: 60000, // 1 minute
   });
 
-  const stocks = stocksData as Stock[] | undefined;
+  // Assuming stocksData is { popular_stocks: Stock[] } based on usage
+  const stocks = (stocksData as { popular_stocks: Stock[] } | undefined)?.popular_stocks;
   const marketSummary = marketData as MarketSummary | undefined;
 
   // Set up automatic scrolling
@@ -120,7 +121,8 @@ export const StockTicker = () => {
   }
 
   // Duplicate the stocks array to create a continuous scrolling effect
-  const duplicatedStocks = [...stocks, ...stocks];
+  // Ensure stocks is not undefined before spreading
+  const duplicatedStocks = stocks ? [...stocks, ...stocks] : [];
 
   return (
     <div className="bg-muted py-2 overflow-hidden border-b border-border">
@@ -139,13 +141,14 @@ export const StockTicker = () => {
                 className="inline-flex items-center space-x-2 mr-6"
               >
                 <span className="font-medium text-sm">{stock.symbol}</span>
-                <span className="text-sm">₦{stock.price.toFixed(2)}</span>
+                {/* Use stock.price as defined in the interface */}
+                <span className="text-sm">₦{stock.current_price?.toFixed(2)?.toLocaleString()}</span>
                 <Badge 
                   variant={stock.change >= 0 ? "default" : "destructive"} 
                   className={`flex items-center text-xs ${stock.change >= 0 ? 'bg-green-500/20 text-green-500' : 'bg-red-500/20 text-red-500'}`}
                 >
                   {stock.change >= 0 ? <ArrowUp className="h-3 w-3 mr-1" /> : <ArrowDown className="h-3 w-3 mr-1" />}
-                  {Math.abs(stock.change).toFixed(2)}%
+                  {Math.abs(stock.change).toFixed(2)?.toLocaleString()}%
                 </Badge>
               </div>
             ))}

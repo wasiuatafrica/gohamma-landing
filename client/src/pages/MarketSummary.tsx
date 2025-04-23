@@ -20,7 +20,7 @@ interface MarketSummary {
 
 interface Stock {
   symbol: string;
-  price: number;
+  current_price: number;
   change: number;
 }
 
@@ -31,12 +31,12 @@ const MarketSummaryPage = () => {
   });
 
   const { data: stocksData, isLoading: isLoadingStocks } = useQuery({
-    queryKey: ['/api/stocks'],
+    queryKey: ['https://api-hamma-f0bcaabf77ea.herokuapp.com/portfolio/popular-stocks/'], // Updated endpoint
     staleTime: 60000, // 1 minute
   });
 
   const marketSummary = marketData as MarketSummary | undefined;
-  const stocks = stocksData as Stock[] | undefined;
+  const stocks = (stocksData as { popular_stocks: Stock[] } | undefined)?.popular_stocks;
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -176,7 +176,7 @@ const MarketSummaryPage = () => {
                         <div key={stock.symbol} className="flex justify-between items-center py-2 border-b border-border">
                           <div>
                             <div className="font-medium">{stock.symbol}</div>
-                            <div className="text-sm text-muted-foreground">₦{stock.price.toFixed(2)}</div>
+                            <div className="text-sm text-muted-foreground">₦{stock.current_price.toFixed(2)}</div>
                           </div>
                           <Badge className="bg-green-500/20 text-green-500">
                             +{stock.change.toFixed(2)}%
@@ -204,7 +204,7 @@ const MarketSummaryPage = () => {
                         <div key={stock.symbol} className="flex justify-between items-center py-2 border-b border-border">
                           <div>
                             <div className="font-medium">{stock.symbol}</div>
-                            <div className="text-sm text-muted-foreground">₦{stock.price.toFixed(2)}</div>
+                            <div className="text-sm text-muted-foreground">₦{stock.current_price.toFixed(2)}</div>
                           </div>
                           <Badge className="bg-red-500/20 text-red-500">
                             {stock.change.toFixed(2)}%

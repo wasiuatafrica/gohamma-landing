@@ -9,7 +9,7 @@ import {
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Menu, User, LogOut, Settings } from "lucide-react";
 import { useState } from "react";
-import { Link, useLocation } from "wouter";
+import { Link, useLocation } from "wouter"; // Keep useLocation
 import { useAuth } from "@/hooks/use-auth";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { Logo } from "@/components/ui/logo";
@@ -17,8 +17,8 @@ import { Logo } from "@/components/ui/logo";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, logoutMutation } = useAuth();
-  console.log("user",user)
-  const [, navigate] = useLocation();
+  // console.log("user",user) // Removed console log
+  const [location, navigate] = useLocation(); // Get the current location
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -34,8 +34,15 @@ const Header = () => {
 
   // Get user initials for avatar
   const getUserInitials = () => {
-    if (!user || !user?.user?.firstname) return "U";
-    return user?.user?.firstname.charAt(0).toUpperCase();
+    if (!user || !user?.firstname) return "U"; // Corrected access
+    return user?.firstname.charAt(0).toUpperCase(); // Corrected access
+  };
+
+  // Helper function to determine link class
+  const getLinkClass = (path: string) => {
+    return location === path
+      ? "text-primary transition" // Active link class
+      : "text-foreground hover:text-primary transition"; // Default link class
   };
 
   return (
@@ -46,28 +53,29 @@ const Header = () => {
             <Logo />
           </Link>
         </div>
-        
+
+        {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
-          <Link href="/" className="text-foreground hover:text-primary transition">
+          <Link href="/" className={getLinkClass("/")}>
             Home
           </Link>
-          <Link href="/market" className="text-foreground hover:text-primary transition">
+          <Link href="/market" className={getLinkClass("/market")}>
             Market
           </Link>
-          <Link href="/about" className="text-foreground hover:text-primary transition">
+          <Link href="/about" className={getLinkClass("/about")}>
             About
           </Link>
-          <Link href="/fees" className="text-foreground hover:text-primary transition">
+          <Link href="/fees" className={getLinkClass("/fees")}>
             Fees
           </Link>
-          <Link href="/help" className="text-foreground hover:text-primary transition">
+          <Link href="/help" className={getLinkClass("/help")}>
             Help
           </Link>
-          <Link href="/university" className="text-foreground hover:text-primary transition">
+          <Link href="/university" className={getLinkClass("/university")}>
             University
           </Link>
         </div>
-        
+
         <div className="flex items-center gap-4">
           <ThemeToggle />
           
@@ -83,16 +91,17 @@ const Header = () => {
               <DropdownMenuContent align="end" className="w-56">
                 <div className="flex items-center justify-start gap-2 p-2">
                   <div className="flex flex-col space-y-1 leading-none">
-                    <p className="font-medium">{user?.user?.firstname||"-"}</p>
+                    <p className="font-medium truncate">{user?.firstname||"-"}</p> {/* Corrected access */}
                   </div>
                 </div>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem asChild>
+                {/* Removed Dashboard link */}
+                {/* <DropdownMenuItem asChild>
                   <Link href="/dashboard" className="cursor-pointer w-full flex items-center">
                     <User className="mr-2 h-4 w-4" />
                     <span>Dashboard</span>
                   </Link>
-                </DropdownMenuItem>
+                </DropdownMenuItem> */}
                 <DropdownMenuItem asChild>
                   <Link href="/settings" className="cursor-pointer w-full flex items-center">
                     <Settings className="mr-2 h-4 w-4" />
@@ -134,36 +143,46 @@ const Header = () => {
       {isMenuOpen && (
         <div className="md:hidden bg-background border-t border-border mt-4">
           <div className="flex flex-col py-4 px-4">
-            <Link href="/" className="py-2 text-foreground hover:text-primary transition">
+            <Link href="/" className={`py-2 ${getLinkClass("/")}`} onClick={toggleMenu}>
               Home
             </Link>
-            <Link href="/market" className="py-2 text-foreground hover:text-primary transition">
+            <Link href="/market" className={`py-2 ${getLinkClass("/market")}`} onClick={toggleMenu}>
               Market
             </Link>
-            <Link href="/about" className="py-2 text-foreground hover:text-primary transition">
+            <Link href="/about" className={`py-2 ${getLinkClass("/about")}`} onClick={toggleMenu}>
               About
             </Link>
-            <Link href="/fees" className="py-2 text-foreground hover:text-primary transition">
+            <Link href="/fees" className={`py-2 ${getLinkClass("/fees")}`} onClick={toggleMenu}>
               Fees
             </Link>
-            <Link href="/help" className="py-2 text-foreground hover:text-primary transition">
+            <Link href="/help" className={`py-2 ${getLinkClass("/help")}`} onClick={toggleMenu}>
               Help
             </Link>
-            <Link href="/university" className="py-2 text-foreground hover:text-primary transition">
+            <Link href="/university" className={`py-2 ${getLinkClass("/university")}`} onClick={toggleMenu}>
               University
             </Link>
             {!user && (
-              <Link href="/auth" className="py-2 text-foreground hover:text-primary transition">
+              <Link href="/auth" className={`py-2 ${getLinkClass("/auth")}`} onClick={toggleMenu}>
                 Log In / Sign Up
               </Link>
             )}
+             {/* Add active state for dashboard/settings in mobile if needed */}
             {user && (
-              <button 
-                onClick={handleLogout}
-                className="py-2 text-left text-foreground hover:text-primary transition"
-              >
-                Log Out
-              </button>
+              <>
+                {/* Removed Dashboard link */}
+                {/* <Link href="/dashboard" className={`py-2 ${getLinkClass("/dashboard")} flex items-center`} onClick={toggleMenu}>
+                   <User className="mr-2 h-4 w-4" /> Dashboard
+                </Link> */}
+                 <Link href="/settings" className={`py-2 ${getLinkClass("/settings")} flex items-center`} onClick={toggleMenu}>
+                   <Settings className="mr-2 h-4 w-4" /> Settings
+                </Link>
+                <button
+                  onClick={() => { handleLogout(); toggleMenu(); }}
+                  className="py-2 text-left text-foreground hover:text-primary transition flex items-center"
+                >
+                  <LogOut className="mr-2 h-4 w-4" /> Log Out
+                </button>
+              </>
             )}
           </div>
         </div>

@@ -18,6 +18,7 @@ import University from "@/pages/University";
 import { AuthProvider } from "@/hooks/use-auth";
 import { ProtectedRoute } from "@/lib/protected-route";
 import { ThemeProvider } from "@/components/theme/theme-provider";
+import Settings from "./pages/Settings";
 
 function Router() {
   return (
@@ -37,10 +38,11 @@ function Router() {
       <Route path="/refund" component={Refund} />
       <Route path="/cookie" component={Cookie} />
       <Route path="/disclaimer" component={Disclaimer} />
+      <Route path="/settings" component={Settings} /> {/* Removed public route */}
       
       {/* Protected Routes */}
-      {/* <ProtectedRoute path="/dashboard" component={Dashboard} /> */}
-      {/* <ProtectedRoute path="/settings" component={Settings} /> */}
+      {/* <ProtectedRoute path="/dashboard" component={Dashboard} /> */} {/* Removed unused dashboard route */}
+      <ProtectedRoute path="/settings" component={Settings} /> {/* Restored protected route */}
       
       {/* Fallback to 404 */}
       <Route component={NotFound} />

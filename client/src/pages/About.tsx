@@ -4,6 +4,9 @@ import StockTicker from "@/components/sections/StockTicker";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Briefcase, Award, Users, ShieldCheck, Clock, BookOpen } from "lucide-react";
+import hammaIcon from '../../../attached_assets/7.png';
+import hammaIcon2 from '../../../attached_assets/8.png';
+import HammaLogo1 from '../../../attached_assets/Hamma Logo (1).png';
 
 const AboutPage = () => {
   return (
@@ -162,15 +165,17 @@ const AboutPage = () => {
                     For media inquiries, please contact our press team at <span className="font-medium">press@gohamma.com</span>
                   </p>
                   <div className="flex flex-wrap gap-3">
-                    <Button variant="outline" className="gap-2">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-download">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                        <polyline points="7 10 12 15 17 10"/>
-                        <line x1="12" y1="15" x2="12" y2="3"/>
-                      </svg>
-                      Logo Pack
-                    </Button>
-                    <Button variant="outline" className="gap-2">
+                    <a href="/attached_assets.zip" download="hamma-logo-pack.zip">
+                      <Button variant="outline" className="gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-download">
+                          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                          <polyline points="7 10 12 15 17 10"/>
+                          <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                        Logo Pack
+                      </Button>
+                    </a>
+                    {/* <Button variant="outline" className="gap-2">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-file-text">
                         <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
                         <polyline points="14 2 14 8 20 8"/>
@@ -187,13 +192,13 @@ const AboutPage = () => {
                         <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
                       </svg>
                       Media Kit
-                    </Button>
+                    </Button> */}
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4 mt-4 md:mt-0">
                   <div className="bg-white p-4 rounded-lg border">
                     <img 
-                      src="/assets/hamma-logo-full.png" 
+                      src={HammaLogo1}
                       alt="Hamma logo" 
                       className="h-12 mx-auto mb-2"
                     />
@@ -201,23 +206,23 @@ const AboutPage = () => {
                   </div>
                   <div className="bg-primary p-4 rounded-lg">
                     <img 
-                      src="/assets/hamma-logo-white.png" 
+                      src={hammaIcon2}
                       alt="Hamma logo white" 
                       className="h-12 mx-auto mb-2"
                     />
                     <p className="text-xs text-center text-primary-foreground">White logo</p>
                   </div>
                   <div className="bg-white p-4 rounded-lg border">
-                    <img 
-                      src="/assets/hamma-icon.png" 
-                      alt="Hamma icon" 
+                    <img
+                      src={hammaIcon}
+                      alt="Hamma icon"
                       className="h-12 mx-auto mb-2"
                     />
                     <p className="text-xs text-center text-muted-foreground">Icon only</p>
                   </div>
                   <div className="bg-black p-4 rounded-lg">
                     <img 
-                      src="/assets/hamma-icon-white.png" 
+                      src={hammaIcon2}
                       alt="Hamma icon white" 
                       className="h-12 mx-auto mb-2"
                     />
