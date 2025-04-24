@@ -21,9 +21,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libpixman-1-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy package files and install dependencies
+# Copy package files
 COPY package*.json ./
-RUN npm ci
+
+# Clean npm cache and install dependencies
+RUN npm cache clean --force && npm install
 
 # Copy all source files
 COPY . .
@@ -71,7 +73,4 @@ RUN apt-get purge -y --auto-remove \
 EXPOSE 5000
 
 # Display final directory structure (optional, for debugging)
-RUN echo "Final directory structure:" && ls -la dist/
-
-# Start the application
-CMD ["npm", "run", "start"]
+RUN echo "Final directory structure

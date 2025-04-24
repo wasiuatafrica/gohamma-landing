@@ -27,7 +27,8 @@ interface ApiErrorData extends ErrorObject {}
 
 import { AxiosResponse, AxiosRequestConfig } from "axios"; // Import necessary types
 
-interface ApiError extends AxiosError<ApiErrorData> { // Specify the data type for AxiosError
+interface ApiError extends AxiosError<ApiErrorData> {
+  message: string; // Specify the data type for AxiosError
   response?: AxiosResponse<ApiErrorData>; // Use AxiosResponse with the specific data type
 }
 
