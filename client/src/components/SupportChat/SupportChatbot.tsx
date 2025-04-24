@@ -616,6 +616,7 @@ const SupportChatbot = () => {
                                 </p>
 
                                 <p
+                                  className="text-[#1e1e1e]"
                                   dangerouslySetInnerHTML={{ __html: responseHtml }}
                                 ></p>
 
@@ -639,7 +640,7 @@ const SupportChatbot = () => {
                                         } items-center justify-center gap-1 w-fit  group-hover:flex transition `}
                                       >
                                         <motion.button
-                                          className="flex justify-center items-center border border-stone-300 border-solid rounded p-1 text-[12px] transition hover:bg-stone-400 hover:text-white"
+                                          className="flex justify-center items-center border text-[#1e1e1e] border-stone-300 border-solid rounded p-1 text-[12px] transition hover:bg-stone-400 hover:text-white"
                                           disabled={botVoteLoading}
                                           whileTap={{ scale: 1.1 }}
                                           onClick={() => {
@@ -658,21 +659,21 @@ const SupportChatbot = () => {
                                             }
                                           }}
                                         >
-                                          {botVoteLoading ? ( <SyncLoading size={10} color={"#151515"} /> ) : ( <LuThumbsUp /> )}
+                                          {botVoteLoading ? ( <SyncLoading size={5} color={"#151515"} /> ) : ( <LuThumbsUp /> )}
                                         </motion.button>
                                         <motion.button
-                                          className="flex justify-center items-center border border-stone-300 border-solid rounded p-1 text-[12px] transition hover:bg-stone-400 hover:text-white"
+                                          className="flex justify-center items-center text-[#1e1e1e] border border-stone-300 border-solid rounded p-1 text-[12px] transition hover:bg-stone-400 hover:text-white"
                                           disabled={botVoteLoading}
                                           whileTap={{ scale: 1.1 }}
                                           onClick={() => setModalCount(i)}
                                         >
-                                          {botVoteLoading ? ( <SyncLoading size={10} color={"#151515"} /> ) : ( <LuThumbsDown /> )}
+                                          {botVoteLoading ? ( <SyncLoading size={5} color={"#151515"} /> ) : ( <LuThumbsDown /> )}
                                         </motion.button>
 
                                         <AnimatePresence initial={false} mode="wait">
                                           {modalCount === i && (
                                             <motion.div
-                                              className="p-1.5 lg:p-3 rounded border border-solid border-[#F2F2F2] text-[10px] mt-2"
+                                              className="p-1.5 lg:p-3 rounded text-[#1e1e1e] border border-solid border-[#F2F2F2] text-[10px] mt-2"
                                               initial={{ opacity: "0" }}
                                               animate={{ opacity: 1 }}
                                               exit={{ opacity: "0" }}
@@ -700,7 +701,7 @@ const SupportChatbot = () => {
                                                   "Other",
                                                 ].map((feedback, i) => (
                                                   <button
-                                                    className="p-1.5 rounded bg-white border border-solid border-[#e8e8e8] transition hover:bg-[#e8e8e8] "
+                                                    className="p-1.5 text-[#1e1e1e] rounded bg-white border border-solid border-[#e8e8e8] transition hover:bg-[#e8e8e8] "
                                                     onClick={() => {
                                                       const email = getValues("email");
                                                       const name = getValues("name");
