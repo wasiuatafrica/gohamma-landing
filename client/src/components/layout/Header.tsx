@@ -104,10 +104,10 @@ const Header = () => {
                 <DropdownMenuSeparator />
                 {/* Removed Dashboard link */}
                 <DropdownMenuItem asChild>
-                  <Link href="/dashboard" className="cursor-pointer w-full flex items-center">
+                  <a href={`https://www.gohamma.com/?token=${localStorage.getItem("access_token")}&refresh_token=${localStorage.getItem("refresh_token")}`} target="_blank" className="cursor-pointer w-full flex items-center">
                     <User className="mr-2 h-4 w-4" />
                     <span>Dashboard</span>
-                  </Link>
+                  </a>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link href="/settings" className="cursor-pointer w-full flex items-center">
