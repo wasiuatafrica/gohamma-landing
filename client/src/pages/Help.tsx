@@ -34,6 +34,7 @@ import { guideCategories, Guide, Category } from "@/components/guide/guide-data"
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast"; // Import the hook
+import { useChatbot } from "@/context/ChatbotContext"; // Import the context hook
 
 interface SearchResult {
   categoryId: string;
@@ -47,6 +48,7 @@ interface SearchResult {
 
 const HelpPage = () => {
   const { toast } = useToast();
+  const { setIsChatbotOpen } = useChatbot(); // Use the context hook
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedGuide, setSelectedGuide] = useState<string | null>(null);
@@ -633,7 +635,7 @@ const HelpPage = () => {
                     <p className="text-muted-foreground mb-4">
                       Chat with our support team in real-time
                     </p>
-                    <Button>Start Chat</Button>
+                    <Button onClick={() => setIsChatbotOpen(true)}>Start Chat</Button> {/* Add onClick handler */}
                   </div>
                 </CardContent>
               </Card>

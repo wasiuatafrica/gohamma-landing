@@ -51,12 +51,14 @@ const Footer = () => {
             <h4 className="font-bold mb-4">Contact</h4>
             <ul className="space-y-2">
               <li className="flex items-start">
-                <MapPin className="mt-1 mr-3 text-primary h-4 w-4" />
+                <MapPin className="mt-1 mr-3 text-primary min-h-4 min-w-4" size={24} />
                 <span>Adepate House, 44 Montgomery Rd, Yaba Lagos</span>
               </li>
-              <li className="flex items-start">
-                <Mail className="mt-1 mr-3 text-primary h-4 w-4" />
+              <li >
+                <a className="flex items-start hover:underline" href="mailto:traders@gohamma.com" >
+                <Mail className="mt-1 mr-3 text-primary min-h-4 min-w-4" />
                 <span>traders@gohamma.com</span>
+                </a>
               </li>
 
             </ul>

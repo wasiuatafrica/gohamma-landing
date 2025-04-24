@@ -34,7 +34,16 @@ export const insertUserSchema = createInsertSchema(users).pick({
 });
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
-export type User = typeof users.$inferSelect;
+
+// Base user type inferred from the database schema
+type BaseUser = typeof users.$inferSelect;
+
+// Exported User type that allows for an optional nested user structure
+// This accommodates the access pattern `user.user.firstname` used elsewhere,
+// even if the primary API response structure is flat.
+export type User = BaseUser & {
+  user?: Partial<BaseUser>; // Nested user is optional and can be partial
+};
 
 // Hamma University Schema
 export const courses = pgTable("courses", {

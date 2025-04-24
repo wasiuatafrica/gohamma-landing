@@ -17,6 +17,7 @@ import { Logo } from "@/components/ui/logo";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, logoutMutation } = useAuth();
+  console.log("user",user)
   // console.log("user",user) // Removed console log
   const [location, navigate] = useLocation(); // Get the current location
 
@@ -34,8 +35,13 @@ const Header = () => {
 
   // Get user initials for avatar
   const getUserInitials = () => {
-    if (!user || !user?.firstname) return "U"; // Corrected access
-    return user?.firstname.charAt(0).toUpperCase(); // Corrected access
+    if (!user) return "U";
+    // Check both possible locations for the first name based on the updated User type
+    const firstName = user.firstname || user.user?.firstname;
+    // If neither location yields a truthy first name, return default
+    if (!firstName) return "U";
+    // Otherwise, return the uppercase initial
+    return firstName.charAt(0).toUpperCase();
   };
 
   // Helper function to determine link class
@@ -91,17 +97,18 @@ const Header = () => {
               <DropdownMenuContent align="end" className="w-56">
                 <div className="flex items-center justify-start gap-2 p-2">
                   <div className="flex flex-col space-y-1 leading-none">
-                    <p className="font-medium truncate">{user?.firstname||"-"}</p> {/* Corrected access */}
+                    {/* Use the same logic to display the first name */}
+                    <p className="font-medium truncate">{user?.firstname || user.user?.firstname || "-"}</p>
                   </div>
                 </div>
                 <DropdownMenuSeparator />
                 {/* Removed Dashboard link */}
-                {/* <DropdownMenuItem asChild>
+                <DropdownMenuItem asChild>
                   <Link href="/dashboard" className="cursor-pointer w-full flex items-center">
                     <User className="mr-2 h-4 w-4" />
                     <span>Dashboard</span>
                   </Link>
-                </DropdownMenuItem> */}
+                </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link href="/settings" className="cursor-pointer w-full flex items-center">
                     <Settings className="mr-2 h-4 w-4" />

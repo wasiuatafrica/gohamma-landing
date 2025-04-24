@@ -1,4 +1,4 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, useLocation } from "wouter"; // Import useLocation
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -19,6 +19,8 @@ import { AuthProvider } from "@/hooks/use-auth";
 import { ProtectedRoute } from "@/lib/protected-route";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import Settings from "./pages/Settings";
+import SupportChatbot from "./components/SupportChat/SupportChatbot";
+import { ChatbotProvider } from "./context/ChatbotContext"; // Import ChatbotProvider
 
 function Router() {
   return (
@@ -50,13 +52,23 @@ function Router() {
   );
 }
 
+// Component to handle conditional rendering based on location
+function ChatbotRenderer() {
+  const [location] = useLocation();
+  return location !== "/" ? <SupportChatbot /> : null;
+}
+
+
 function App() {
   return (
     <ThemeProvider defaultTheme="system" storageKey="hamma-theme">
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
-          <Router />
-          <Toaster />
+          <ChatbotProvider> {/* Wrap with ChatbotProvider */}
+            <Router />
+            <ChatbotRenderer /> {/* Render the chatbot conditionally */}
+            <Toaster />
+          </ChatbotProvider>
         </AuthProvider>
       </QueryClientProvider>
     </ThemeProvider>

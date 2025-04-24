@@ -1,0 +1,90 @@
+.formController {
+    color: #151515;
+    font-size: 14px;
+    line-height: 20px;
+    position: relative;
+    width: 100%;
+}
+
+.formController label {
+    display: block;
+    margin-bottom: 15px;
+    color: #151515;
+}
+
+.formController input,
+.formController textArea,
+.formController select {
+    display: block;
+    outline: 0.5px solid transparent;
+    width: 100% !important;
+    border-radius: 8px;
+    padding: 14px 12px;
+    font-size: 16px;
+    line-height: 22px;
+    background-color: #F2F2F2;
+    transition: border 0.25s ease-in-out;
+    outline: none;
+}
+
+.formController input::placeholder,
+.formController textArea::placeholder,
+.formController select::placeholder {
+    color: #A9A5A7;
+}
+
+.formController input:hover,
+.formController input:focus,
+.formController textArea:hover,
+.formController textArea:focus,
+.formController select:hover,
+.formController select:focus {
+    outline: 0.5px solid #00BA77;
+}
+
+.formController input.warn,
+.formController textArea.warn,
+.formController select.warn {
+    outline: 0.5px solid #FF0000;
+}
+
+.formController input.disabled,
+.formController input:disabled,
+.formController textArea.disabled,
+.formController textArea:disabled,
+.formController select.disabled,
+.formController select:disabled {
+    background-color: #F2F2F2;
+    color: #808080;
+    outline: 0.5px solid transparent;
+}
+
+.formController .form_input {
+    position: relative;
+}
+
+.formController .form_input input {
+    padding: 11px 12px;
+    padding-right: 40px;
+}
+
+.formController .desc {
+    font-size: 10px;
+    line-height: 14px;
+    margin-top: 5px;
+}
+
+.formController .desc.warn {
+    color: #FF0000;
+}
+
+.loadingBoxComp {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.LoadingText {
+    margin-left: .5rem;
+}

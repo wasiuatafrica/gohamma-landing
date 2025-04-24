@@ -13,7 +13,7 @@ export async function apiRequest(
   data?: unknown | undefined,
 ): Promise<Response> {
   const headers: HeadersInit = data ? { "Content-Type": "application/json" } : {};
-  const token = localStorage.getItem("accessToken");
+  const token = localStorage.getItem("access_token");
   if (token) {
     headers["Authorization"] = `Bearer ${token}`;
   }
@@ -46,7 +46,7 @@ export const getQueryFn: <T>(options: {
     }
 
     const headers: HeadersInit = {};
-    const token = localStorage.getItem("accessToken");
+    const token = localStorage.getItem("access_token");
     if (token) {
       headers["Authorization"] = `Bearer ${token}`;
     }
