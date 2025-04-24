@@ -70,7 +70,7 @@ RUN apt-get purge -y --auto-remove \
     && rm -rf /var/lib/apt/lists/*
 
 # Expose port
-EXPOSE 5000
+EXPOSE 5432
 
 # Display final directory structure (optional, for debugging)
 RUN echo "Final directory structure:" && ls -la dist/
