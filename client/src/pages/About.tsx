@@ -214,7 +214,7 @@ const AboutPage = () => {
                   </div>
                   <div className="bg-white p-4 rounded-lg border">
                     <img
-                      src={hammaIcon}
+                      src={"/src/assets/favicon.ico"}
                       alt="Hamma icon"
                       className="h-12 mx-auto mb-2"
                     />
@@ -222,7 +222,7 @@ const AboutPage = () => {
                   </div>
                   <div className="bg-black p-4 rounded-lg">
                     <img 
-                      src={hammaIcon2}
+                      src={hammaIcon}
                       alt="Hamma icon white" 
                       className="h-12 mx-auto mb-2"
                     />

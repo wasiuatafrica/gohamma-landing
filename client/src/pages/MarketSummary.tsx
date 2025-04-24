@@ -5,17 +5,20 @@ import StockTicker from "@/components/sections/StockTicker";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowUp, ArrowDown, BarChart2, Repeat, Clock, TrendingUp } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { formatNumberShort } from "@/lib/utils";
 
 interface MarketSummary {
-  nseIndex: number;
-  change: number;
-  percentChange: number;
+  nse_index: number; // Renamed from nseIndex
+  point_change: number; // Renamed from change
+  percent_change: number;
   volume: string;
-  marketCap: string;
+  market_capitalization: string; // Renamed from marketCap
   advancers: number;
   decliners: number;
   unchanged: number;
-  lastUpdated: string;
+  last_update_time: string; // Renamed from lastUpdated
+  top_gainers: Stock[];
+  top_losers: Stock[];
 }
 
 interface Stock {
@@ -26,17 +29,11 @@ interface Stock {
 
 const MarketSummaryPage = () => {
   const { data: marketData, isLoading: isLoadingMarket } = useQuery({
-    queryKey: ['/api/market-summary'],
-    staleTime: 60000, // 1 minute
-  });
-
-  const { data: stocksData, isLoading: isLoadingStocks } = useQuery({
-    queryKey: ['https://api-hamma-f0bcaabf77ea.herokuapp.com/portfolio/popular-stocks/'], // Updated endpoint
+    queryKey: ['https://api-hamma-f0bcaabf77ea.herokuapp.com/support/summary/'],
     staleTime: 60000, // 1 minute
   });
 
   const marketSummary = marketData as MarketSummary | undefined;
-  const stocks = (stocksData as { popular_stocks: Stock[] } | undefined)?.popular_stocks;
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -77,20 +74,20 @@ const MarketSummaryPage = () => {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold">{marketSummary.nseIndex.toLocaleString()}</div>
+                    <div className="text-2xl font-bold">{(marketSummary?.nse_index||0)?.toLocaleString()}</div> {/* Changed to use nse_index */}
                     <div className="flex items-center mt-1">
-                      <Badge 
-                        variant={marketSummary.percentChange >= 0 ? "default" : "destructive"}
-                        className={`flex items-center ${marketSummary.percentChange >= 0 ? 'bg-green-500/20 text-green-500' : 'bg-red-500/20 text-red-500'}`}
+                      <Badge
+                        variant={marketSummary.percent_change >= 0 ? "default" : "destructive"}
+                        className={`flex items-center ${marketSummary.percent_change >= 0 ? 'bg-green-500/20 text-green-500' : 'bg-red-500/20 text-red-500'}`}
                       >
-                        {marketSummary.percentChange >= 0 ? 
+                        {marketSummary.percent_change >= 0 ? 
                           <ArrowUp className="h-3 w-3 mr-1" /> : 
                           <ArrowDown className="h-3 w-3 mr-1" />
                         }
-                        {Math.abs(marketSummary.percentChange).toFixed(2)}%
+                        {Math.abs(marketSummary.percent_change).toFixed(2)}%
                       </Badge>
                       <span className="text-muted-foreground text-sm ml-2">
-                        {marketSummary.change >= 0 ? "+" : ""}{marketSummary.change.toFixed(2)} pts
+                        {marketSummary.point_change >= 0 ? "+" : ""}{marketSummary.point_change.toFixed(2)} pts
                       </span>
                     </div>
                   </CardContent>
@@ -104,9 +101,9 @@ const MarketSummaryPage = () => {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold">₦{marketSummary.marketCap}</div>
+                    <div className="text-2xl font-bold">₦{formatNumberShort(marketSummary.market_capitalization)}</div>
                     <div className="text-muted-foreground text-sm mt-1">
-                      Volume: {marketSummary.volume} shares
+                      Volume: {formatNumberShort(marketSummary.volume)} shares
                     </div>
                   </CardContent>
                 </Card>
@@ -121,15 +118,15 @@ const MarketSummaryPage = () => {
                   <CardContent>
                     <div className="grid grid-cols-3 gap-2">
                       <div>
-                        <div className="text-lg font-bold text-green-500">{marketSummary.advancers}</div>
+                        <div className="text-lg font-bold text-green-500">{marketSummary.advancers||0}</div>
                         <div className="text-xs text-muted-foreground">Gainers</div>
                       </div>
                       <div>
-                        <div className="text-lg font-bold text-red-500">{marketSummary.decliners}</div>
+                        <div className="text-lg font-bold text-red-500">{marketSummary.decliners||0}</div>
                         <div className="text-xs text-muted-foreground">Losers</div>
                       </div>
                       <div>
-                        <div className="text-lg font-bold">{marketSummary.unchanged}</div>
+                        <div className="text-lg font-bold">{marketSummary.unchanged||0}</div>
                         <div className="text-xs text-muted-foreground">Unchanged</div>
                       </div>
                     </div>
@@ -145,7 +142,7 @@ const MarketSummaryPage = () => {
                   </CardHeader>
                   <CardContent>
                     <div className="text-lg font-medium">
-                      {marketSummary.lastUpdated ? formatDate(marketSummary.lastUpdated) : "N/A"}
+                      {marketSummary.last_update_time ? formatDate(marketSummary.last_update_time) : "N/A"}
                     </div>
                     <div className="text-muted-foreground text-sm mt-1">
                       Nigerian Stock Exchange
@@ -157,8 +154,9 @@ const MarketSummaryPage = () => {
           )}
           
           {/* Top Gainers and Losers */}
-          {!isLoadingStocks && stocks && (
+          {!isLoadingMarket && marketSummary && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Top Gainers Card */}
               <Card>
                 <CardHeader>
                   <CardTitle className="text-lg flex items-center">
@@ -167,12 +165,9 @@ const MarketSummaryPage = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-3">
-                    {stocks
-                      .filter(stock => stock.change > 0)
-                      .sort((a, b) => b.change - a.change)
-                      .slice(0, 5)
-                      .map(stock => (
+                  {marketSummary.top_gainers && marketSummary.top_gainers.length > 0 ? (
+                    <div className="space-y-3">
+                      {marketSummary.top_gainers.slice(0, 5).map(stock => (
                         <div key={stock.symbol} className="flex justify-between items-center py-2 border-b border-border">
                           <div>
                             <div className="font-medium">{stock.symbol}</div>
@@ -183,10 +178,14 @@ const MarketSummaryPage = () => {
                           </Badge>
                         </div>
                       ))}
-                  </div>
+                    </div>
+                  ) : (
+                    <p className="text-muted-foreground text-sm">No top gainers available today.</p>
+                  )}
                 </CardContent>
               </Card>
               
+              {/* Top Losers Card */}
               <Card>
                 <CardHeader>
                   <CardTitle className="text-lg flex items-center">
@@ -195,12 +194,9 @@ const MarketSummaryPage = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-3">
-                    {stocks
-                      .filter(stock => stock.change < 0)
-                      .sort((a, b) => a.change - b.change)
-                      .slice(0, 5)
-                      .map(stock => (
+                  {marketSummary.top_losers && marketSummary.top_losers.length > 0 ? (
+                    <div className="space-y-3">
+                      {marketSummary.top_losers.slice(0, 5).map(stock => (
                         <div key={stock.symbol} className="flex justify-between items-center py-2 border-b border-border">
                           <div>
                             <div className="font-medium">{stock.symbol}</div>
@@ -211,7 +207,10 @@ const MarketSummaryPage = () => {
                           </Badge>
                         </div>
                       ))}
-                  </div>
+                    </div>
+                  ) : (
+                    <p className="text-muted-foreground text-sm">No top losers available today.</p>
+                  )}
                 </CardContent>
               </Card>
             </div>
