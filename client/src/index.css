@@ -75,6 +75,27 @@
 }
 
 @layer utilities {
+  /* Add marquee animation */
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-100%); }
+  }
+  @keyframes marquee2 {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(0%); }
+  }
+  .animate-marquee {
+    animation: marquee 20s linear infinite;
+  }
+  .animate-marquee2 {
+    animation: marquee2 20s linear infinite;
+  }
+  .group-hover\:pause:hover .animate-marquee,
+  .group-hover\:pause:hover .animate-marquee2 {
+    animation-play-state: paused;
+  }
+
+  /* Existing utilities */
   .hide-scrollbar::-webkit-scrollbar {
     display: none;
   }

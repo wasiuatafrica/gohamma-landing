@@ -127,7 +127,7 @@ export class MemStorage implements IStorage {
       courseId: technicalAnalysisCourse.id,
       title: "Introduction to Chart Patterns",
       content: "Chart patterns are specific formations on stock charts that can help predict future price movements. These patterns form when the price of an asset moves in a way that resembles a common shape or formation.",
-      videoUrl: "https://www.youtube.com/embed/example1",
+      videoUrl: "https://www.youtube.com/embed/Z4X0tOTpo8E?si=2EAKwPi0S1MoO453",
       order: 1
     });
     

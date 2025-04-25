@@ -144,8 +144,8 @@ export function QuizContent({ quiz, onComplete }: QuizContentProps) {
     }
     
     return (
-      <div className="py-8">
-        <Card className="max-w-xl mx-auto">
+      <div className="py-8 ">
+        <Card className="max-w-xl mx-auto !overflow-y-scroll !max-h-[75vh]">
           <CardHeader>
             <CardTitle>Quiz Results</CardTitle>
           </CardHeader>
@@ -273,7 +273,7 @@ export function QuizContent({ quiz, onComplete }: QuizContentProps) {
               className="space-y-3"
             >
               {currentQuestion.options.map((option, index) => (
-                <div key={index} className="flex items-start space-x-2 rounded-md p-2 hover:bg-muted">
+                <div key={index} className="flex items-center space-x-2 rounded-md p-2 hover:bg-muted">
                   <RadioGroupItem value={index.toString()} id={`option-${index}`} />
                   <Label 
                     htmlFor={`option-${index}`}

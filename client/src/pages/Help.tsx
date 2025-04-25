@@ -616,11 +616,11 @@ const HelpPage = () => {
                     <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
                       <Phone className="h-6 w-6 text-primary" />
                     </div>
-                    <h3 className="font-bold text-lg mb-2">Phone Support</h3>
+                    <h3 className="font-bold text-lg mb-2">Whatsapp Support</h3>
                     <p className="text-muted-foreground mb-4">
                       Call us during business hours: 9AM - 5PM (Mon-Fri)
                     </p>
-                    <p className="font-medium">+234 800 123 4567</p>
+                    <a href="http://wa.me/8001234567" target="_blank" rel="noopener noreferrer"  className="font-medium hover:underline">+234 800 123 4567</a>
                   </div>
                 </CardContent>
               </Card>
@@ -723,9 +723,9 @@ const HelpPage = () => {
               <p className="text-muted-foreground">
                 Lagos, Nigeria
               </p>
-              <div className="mt-4">
-                <Button variant="outline">Get Directions</Button>
-              </div>
+              <a href="https://www.google.com/maps/place/44+Montgomery+Rd,+Yaba,+Lagos+101245,+Lagos/@15.9965026,-83.6180348,3z/data=!4m10!1m2!2m1!1sAdepate+House,+44+Montgomery+Rd,+Yaba+Lagos!3m6!1s0x103b8c58e0491c41:0x44c5f4a2547e771!8m2!3d6.5100455!4d3.3773482!15sCitBZGVwYXRlIEhvdXNlLCA0NCBNb250Z29tZXJ5IFJkLCBZYWJhIExhZ29zkgEQZ2VvY29kZWRfYWRkcmVzc-ABAA!16s%2Fg%2F11f9whhqw7?entry=ttu&g_ep=EgoyMDI1MDQyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" className="">
+                <Button variant="outline" className="mt-4 ">Get Directions</Button>
+              </a>
             </div>
           </section>
         </div>

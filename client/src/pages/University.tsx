@@ -32,6 +32,7 @@ const University = () => {
   const [selectedLesson, setSelectedLesson] = useState<Lesson | null>(null);
   const [selectedQuiz, setSelectedQuiz] = useState<Quiz | null>(null);
   const [isQuizDialogOpen, setIsQuizDialogOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState("courses"); // State for the main tabs
   const [location, navigate] = useLocation();
   const { user } = useAuth();
 
@@ -149,7 +150,7 @@ const University = () => {
             </p>
           </div>
 
-          <Tabs defaultValue="courses" className="space-y-6">
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="courses">Courses</TabsTrigger>
               <TabsTrigger value="my-progress">My Progress</TabsTrigger>
@@ -414,9 +415,7 @@ const University = () => {
                       </p>
                       <Button
                         className="mt-4"
-                        onClick={() => document.querySelector('[value="courses"]')?.dispatchEvent(
-                          new MouseEvent("click", { bubbles: true })
-                        )}
+                        onClick={() => setActiveTab("courses")}
                       >
                         Browse Courses
                       </Button>

@@ -120,9 +120,9 @@ const PrivacyPage = () => {
                 If you have questions or concerns about this Privacy Policy or our privacy practices, please contact us at:
               </p>
               <ul>
-                <li>Email: privacy@gohamma.com</li>
+                <li>Email: traders@gohamma.com</li>
                 <li>Phone: +234 800 123 4567</li>
-                <li>Address: 12th Floor, Victoria Island Tower, 1234 Adeola Odeku Street, Victoria Island, Lagos, Nigeria</li>
+                <li>Address: Adepate House, 44 Montgomery Rd, Yaba Lagos</li>
               </ul>
             </div>
           </div>
