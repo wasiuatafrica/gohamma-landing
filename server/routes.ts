@@ -82,7 +82,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const courses = await storage.getCourses();
       res.json(courses);
     } catch (error) {
-      console.error("Error fetching courses:", error);
+      console.error("Detailed error in GET /api/university/courses:", error); // Add detailed logging
       res.status(500).json({ error: 'Failed to fetch courses' });
     }
   });
@@ -98,6 +98,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       res.json(course);
     } catch (error) {
+      console.error("Detailed error in GET /api/university/courses/:id:", error); // Add detailed logging
       res.status(500).json({ error: 'Failed to fetch course' });
     }
   });
@@ -110,6 +111,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       res.json(lessons);
     } catch (error) {
+      console.error("Detailed error in GET /api/university/courses/:courseId/lessons:", error); // Add detailed logging
       res.status(500).json({ error: 'Failed to fetch lessons' });
     }
   });
@@ -125,6 +127,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       res.json(lesson);
     } catch (error) {
+      console.error("Detailed error in GET /api/university/lessons/:id:", error); // Add detailed logging
       res.status(500).json({ error: 'Failed to fetch lesson' });
     }
   });
@@ -137,6 +140,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       res.json(quizzes);
     } catch (error) {
+      console.error("Detailed error in GET /api/university/courses/:courseId/quizzes:", error); // Add detailed logging
       res.status(500).json({ error: 'Failed to fetch quizzes' });
     }
   });
@@ -152,6 +156,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       res.json(quiz);
     } catch (error) {
+      console.error("Detailed error in GET /api/university/quizzes/:id:", error); // Add detailed logging
       res.status(500).json({ error: 'Failed to fetch quiz' });
     }
   });
@@ -164,6 +169,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       res.json(questions);
     } catch (error) {
+      console.error("Detailed error in GET /api/university/quizzes/:quizId/questions:", error); // Add detailed logging
       res.status(500).json({ error: 'Failed to fetch questions' });
     }
   });
@@ -182,6 +188,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       res.json(results);
     } catch (error) {
+      console.error("Detailed error in GET /api/university/user/quiz-results:", error); // Add detailed logging
       res.status(500).json({ error: 'Failed to fetch quiz results' });
     }
   });
@@ -194,7 +201,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
 
     try {
-      const userId = req.user.id; // Get user ID from the authenticated user object
+      // Access userId potentially from nested structure, fallback to root
+      const userId = req.user.user?.id ?? req.user.id; 
+      
+      if (typeof userId !== 'number') {
+        // If userId is still not a number after checking both locations
+        console.error("Failed to extract valid userId from authenticated user:", req.user);
+        return res.status(401).json({ error: 'Authentication failed or user ID not found in token data' });
+      }
+
       const { quizId, score, totalQuestions } = req.body;
 
       if (typeof quizId !== 'number' || typeof score !== 'number' || typeof totalQuestions !== 'number') {
@@ -226,6 +241,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       res.status(201).json(newResult);
     } catch (error) {
+      console.error("Detailed error saving quiz result:", error); // Add detailed logging
       res.status(500).json({ error: 'Failed to save quiz result' });
     }
   });
@@ -250,6 +266,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       res.json(leaderboardWithUserDetails);
     } catch (error) {
+      console.error("Detailed error in GET /api/university/leaderboard:", error); // Add detailed logging
       res.status(500).json({ error: 'Failed to fetch leaderboard' });
     }
   });
