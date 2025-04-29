@@ -18,9 +18,9 @@ if (!process.env.DATABASE_URL) {
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   // Add SSL configuration if required by Supabase (often needed)
-  // ssl: {
-  //   rejectUnauthorized: false // Adjust based on your security requirements
-  // }
+  ssl: {
+    rejectUnauthorized: false // Adjust based on your security requirements
+  }
 });
 export const db = drizzle(pool); // Export the db instance
 
