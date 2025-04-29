@@ -90,14 +90,14 @@ export const seedCourses: Omit<Course, 'id' | 'createdAt'>[] = [
 export const seedLessons: Omit<Lesson, 'id'>[] = [
   { courseId: 1, title: 'What is the NGX?', content: 'History, function, and importance of the Nigerian Exchange Limited.', videoUrl: null, order: 1 },
   { courseId: 1, title: 'Market Participants', content: 'Roles of stockbrokers, regulators (SEC), CSCS, etc.', videoUrl: null, order: 2 },
-  { courseId: 2, title: 'Introduction to Candlestick Charts', content: 'Understanding Open, High, Low, Close (OHLC) and basic patterns.', videoUrl: '/assets/videos/lessons/candlesticks_intro.mp4', order: 1 },
-  { courseId: 2, title: 'Support and Resistance Levels', content: 'Identifying key price levels on charts.', videoUrl: '/assets/videos/lessons/support_resistance.mp4', order: 2 },
+  { courseId: 2, title: 'Introduction to Candlestick Charts', content: 'Understanding Open, High, Low, Close (OHLC) and basic patterns.', videoUrl: 'https://www.youtube.com/embed/AOz1YPOKvEs?si=UpiivB0Lglcb5upU', order: 1 },
+  { courseId: 2, title: 'Support and Resistance Levels', content: 'Identifying key price levels on charts.', videoUrl: 'https://www.youtube.com/embed/k4PIea7hTZI?si=MgvgkyveihQGuMUd', order: 2 },
   { courseId: 3, title: 'Value Investing Principles', content: 'Finding undervalued stocks based on fundamentals.', videoUrl: null, order: 1 },
   { courseId: 4, title: 'Decoding the Income Statement', content: 'Understanding revenue, costs, and profitability.', videoUrl: null, order: 1 },
-  { courseId: 5, title: 'Moving Averages (SMA & EMA)', content: 'Using moving averages to identify trends.', videoUrl: '/assets/videos/lessons/moving_averages.mp4', order: 1 },
+  { courseId: 5, title: 'Moving Averages (SMA & EMA)', content: 'Using moving averages to identify trends.', videoUrl: 'https://www.youtube.com/embed/hO0oUSk6SJY?si=Cp_PFQvmVxD37m-Z', order: 1 },
   { courseId: 6, title: 'Position Sizing Strategies', content: 'Determining how much capital to allocate per trade.', videoUrl: null, order: 1 },
   { courseId: 7, title: 'Analyzing the Nigerian Banking Sector', content: 'Key metrics and factors affecting bank stocks.', videoUrl: null, order: 1 },
-  { courseId: 10, title: 'Placing a Market Order', content: 'How to execute a market order on a typical platform.', videoUrl: '/assets/videos/lessons/market_order.mp4', order: 1 },
+  { courseId: 10, title: 'Placing a Market Order', content: 'How to execute a market order on a typical platform.', videoUrl: 'https://www.youtube.com/embed/Tiyystl8x40?si=eK5YT3OnXlK2KQtD', order: 1 },
 ];
 
 // --- Seed Data for Quizzes ---

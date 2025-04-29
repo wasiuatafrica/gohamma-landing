@@ -267,6 +267,9 @@ const University = () => {
                                           src={selectedLesson.videoUrl}
                                           className="w-full h-full rounded-lg border"
                                           allowFullScreen
+                                          referrerPolicy="strict-origin-when-cross-origin"
+                                          frameBorder="0"
+                                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                           title={selectedLesson.title}
                                         ></iframe>
                                       </div>
