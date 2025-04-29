@@ -249,6 +249,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       res.json(leaderboardWithUserDetails);
     } catch (error) {
+      console.log("error",error)
       res.status(500).json({ error: 'Failed to fetch leaderboard' });
     }
   });
