@@ -5,8 +5,8 @@ import {
   insertUserSchema, // Added missing import
   insertUserQuizResultSchema, insertCourseSchema, insertLessonSchema, insertQuizSchema, insertQuestionSchema
 } from "@shared/schema";
-import { drizzle } from 'drizzle-orm/neon-http';
-import { neon } from '@neondatabase/serverless';
+import { drizzle } from 'drizzle-orm/node-postgres'; // Changed from neon-http
+import { Pool } from 'pg'; // Import Pool from pg
 import { eq, desc, and } from 'drizzle-orm'; // Import necessary Drizzle operators
 
 // Ensure DATABASE_URL is set
@@ -14,9 +14,15 @@ if (!process.env.DATABASE_URL) {
   throw new Error("DATABASE_URL environment variable is not set.");
 }
 
-// Create the Drizzle client instance
-const sql = neon(process.env.DATABASE_URL);
-const db = drizzle(sql);
+// Create the Drizzle client instance using pg Pool
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  // Add SSL configuration if required by Supabase (often needed)
+  // ssl: {
+  //   rejectUnauthorized: false // Adjust based on your security requirements
+  // }
+});
+export const db = drizzle(pool); // Export the db instance
 
 // Define the interface for storage operations
 export interface IStorage {
