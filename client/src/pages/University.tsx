@@ -532,7 +532,8 @@ const University = () => {
                                 {user?.id === result.userId && " (You)"}
                               </td>
                               <td className="px-4 py-3">
-                                {quiz?.title || "Unknown Quiz"}
+                                {/* Directly use quizTitle from the result object */}
+                                {result.quizTitle}
                               </td>
                               <td className="px-4 py-3">
                                 {result.score}/{result.totalQuestions}{" "}
