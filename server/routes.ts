@@ -27,10 +27,41 @@ const authenticateToken = async (req: AuthenticatedRequest, res: Response, next:
     });
 
     if (profileResponse.status === 200 && profileResponse.data) {
-      req.user = profileResponse.data; // Attach user to request
+      // User profile fetched successfully from external API
+      const externalUser = profileResponse.data;
+
+      // --- BEGIN REVISED EMAIL HANDLING ---
+      // Extract email, checking top-level first, then nested 'user' property
+      const email = externalUser.email ?? externalUser.user?.email;
+
+      // Ensure we found a valid email
+      if (!email || typeof email !== 'string') {
+        console.error("External user profile is missing a valid email at top-level or nested 'user':", externalUser);
+        // Send 401 as the token might be valid but the user data is incomplete for our system
+        return res.status(401).json({ error: 'User profile incomplete (missing email)' });
+      }
+
+      // If email was nested, ensure the top-level externalUser object has it for findOrCreateUser
+      // This assumes findOrCreateUser expects a flat structure matching BaseUser for creation.
+      // We might need to adjust findOrCreateUser if it should handle nested data directly.
+      // For now, let's ensure the object passed has the email property directly.
+      const userPayloadForStorage = {
+        ...externalUser, // Spread the original data
+        ...(externalUser.user ?? {}), // Spread nested user data if it exists, potentially overwriting some top-level fields if names clash
+        email: email // Explicitly set the validated email
+      };
+      // --- END REVISED EMAIL HANDLING ---
+
+
+      // Find or create the user in the local database using the potentially adjusted payload
+      // Note: findOrCreateUser uses the email from userPayloadForStorage now
+      const localUser = await storage.findOrCreateUser(userPayloadForStorage as SelectUser); // Cast needed as we modified the structure
+
+      // Attach the *local* user object (returned from storage) to the request
+      req.user = localUser;
       next(); // pass the execution off to whatever request the client intended
     } else {
-      res.sendStatus(401); // Invalid token or user not found
+      res.sendStatus(401); // Invalid token or user not found by external API
     }
   } catch (error) {
     console.error("Token verification failed:", error);
@@ -176,14 +207,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Quiz Results (Protected by authenticateToken middleware)
   app.get('/api/university/user/quiz-results', authenticateToken, async (req: AuthenticatedRequest, res: Response) => {
-    // User is attached to req.user by the middleware if authenticated
+    // User (local user record) is attached to req.user by the middleware if authenticated
     if (!req.user) {
        // This case should ideally be handled by the middleware, but added as a safeguard
       return res.status(401).json({ error: 'Authentication failed or user not found' });
     }
 
     try {
-      const userId = req.user.id; // Get user ID from the authenticated user object
+      // req.user now holds the local User object from our database
+      const userId = req.user.id; // Get user ID from the local user object
       const results = await storage.getUserQuizResults(userId);
 
       res.json(results);
@@ -194,20 +226,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   app.post('/api/university/user/quiz-results', authenticateToken, async (req: AuthenticatedRequest, res: Response) => {
-     // User is attached to req.user by the middleware if authenticated
+     // User (local user record) is attached to req.user by the middleware if authenticated
     if (!req.user) {
       // This case should ideally be handled by the middleware, but added as a safeguard
       return res.status(401).json({ error: 'Authentication failed or user not found' });
     }
 
     try {
-      // Access userId potentially from nested structure, fallback to root
-      const userId = req.user.user?.id ?? req.user.id; 
-      
+      // req.user now holds the local User object from our database
+      const userId = req.user.id; // Get user ID directly from the local user object
+
+      // No need for the complex check anymore, userId should be a number here
       if (typeof userId !== 'number') {
-        // If userId is still not a number after checking both locations
-        console.error("Failed to extract valid userId from authenticated user:", req.user);
-        return res.status(401).json({ error: 'Authentication failed or user ID not found in token data' });
+        // This check is now more of a safeguard against unexpected issues
+        console.error("Invalid userId found after authentication:", req.user);
+        return res.status(500).json({ error: 'Internal server error processing user ID' });
       }
 
       const { quizId, score, totalQuestions } = req.body;
@@ -226,14 +259,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
           totalQuestions,
           completed: true,
           completedAt: new Date()
-        });
-        return res.json(updatedResult);
-      }
-      
-      // Create a new result
-      const newResult = await storage.createUserQuizResult({
-        userId,
-        quizId,
+       });
+       return res.json(updatedResult);
+       }
+       
+       // --- Fetch quiz title before creating result ---
+       const quiz = await storage.getQuizById(quizId);
+       if (!quiz) {
+         // This should ideally not happen if quizId is valid, but good to check
+         return res.status(404).json({ error: 'Quiz not found for the provided quizId' });
+       }
+       const quizTitle = quiz.title;
+       // --- End fetch quiz title ---
+
+       // Create a new result, now including the quizTitle
+       const newResult = await storage.createUserQuizResult({
+         userId,
+         quizId,
+         quizTitle, // Add the fetched quiz title here
         score,
         totalQuestions,
         completed: true
