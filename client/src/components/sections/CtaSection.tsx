@@ -63,7 +63,7 @@ const CtaSection = () => {
           </Card>
           
           <Button size="lg" className="px-8" asChild>
-            <a href="/auth">Get Started Now</a>
+            <a href="https://www.gohamma.com/register">Get Started Now</a>
           </Button>
         </div>
       </div>

@@ -80,6 +80,9 @@ const Header = () => {
           <a href="https://hot.hamma.trade" target="_blank" rel="noopener noreferrer" className={getLinkClass("/university")}>
             University
           </a>
+          <a href="https://hamma.trade" target="_blank" rel="noopener noreferrer" className={getLinkClass("/hamma-trade")}>
+            Prop Trade
+          </a>
         </div>
 
         <div className="flex items-center gap-4">
@@ -167,6 +170,9 @@ const Header = () => {
             </Link>
             <a href="https://hot.hamma.trade" target="_blank" rel="noopener noreferrer" className={`py-2 ${getLinkClass("/university")}`} onClick={toggleMenu}>
               University
+            </a>
+            <a href="https://hamma.trade" target="_blank" rel="noopener noreferrer" className={`py-2 ${getLinkClass("/hamma-trade")}`} onClick={toggleMenu}>
+              Trade
             </a>
             {!user && (
               <a href="https://www.gohamma.com/register" target="_blank" rel="noopener noreferrer" className={`py-2 ${getLinkClass("/auth")}`} onClick={toggleMenu}>

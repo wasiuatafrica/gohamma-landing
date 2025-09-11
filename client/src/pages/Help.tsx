@@ -718,7 +718,7 @@ const HelpPage = () => {
                 Adepate House
               </p>
               <p className="text-muted-foreground mb-2">
-                44 Montgomery Rd, Yaba
+                42 Montgomery Rd, Yaba
               </p>
               <p className="text-muted-foreground">
                 Lagos, Nigeria

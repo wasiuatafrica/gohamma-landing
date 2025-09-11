@@ -18,7 +18,7 @@ const HeroSection = () => {
           </p>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <Button size="lg" asChild>
-              <a href="/auth">Get Started</a>
+              <a href="https://www.gohamma.com/register">Get Started</a>
             </Button>
             {/* <Button variant="outline" size="lg" className="border-primary text-primary" asChild>
               <a href="/about">

@@ -12,26 +12,26 @@ const faqs: FaqItem[] = [
     question: "How do I create an account on Hamma?",
     answer: "Creating an account on Hamma is easy. Click on the 'Sign Up' button, fill in your personal details, verify your email, and complete the KYC process to start trading immediately.",
   },
-  {
-    id: "trading-fees",
-    question: "What are the trading fees?",
-    answer: "Our trading fees are competitive and transparent. We charge a 0.5% commission on each trade, with no hidden costs. Volume discounts are available for active traders.",
-  },
-  {
-    id: "deposit-funds",
-    question: "How do I deposit funds?",
-    answer: "You can deposit funds using bank transfers, credit/debit cards, or through our partnered payment gateways like Paystack. All deposits are processed instantly during business hours.",
-  },
-  {
-    id: "withdraw-earnings",
-    question: "How do I withdraw my earnings?",
-    answer: "Withdrawals can be made through the 'Withdrawal' section of your account dashboard. Enter the amount you wish to withdraw and select your preferred bank account. Processing typically takes 1-2 business days.",
-  },
-  {
-    id: "regulations",
-    question: "Is Hamma regulated by the Nigerian SEC?",
-    answer: "Yes, Hamma is fully regulated by the Securities and Exchange Commission of Nigeria and complies with all financial regulations and standards required for stock trading platforms in Nigeria.",
-  },
+  // {
+  //   id: "trading-fees",
+  //   question: "What are the trading fees?",
+  //   answer: "Our trading fees are competitive and transparent. We charge a 0.5% commission on each trade, with no hidden costs. Volume discounts are available for active traders.",
+  // },
+  // {
+  //   id: "deposit-funds",
+  //   question: "How do I deposit funds?",
+  //   answer: "You can deposit funds using bank transfers, credit/debit cards, or through our partnered payment gateways like Paystack. All deposits are processed instantly during business hours.",
+  // },
+  // {
+  //   id: "withdraw-earnings",
+  //   question: "How do I withdraw my earnings?",
+  //   answer: "Withdrawals can be made through the 'Withdrawal' section of your account dashboard. Enter the amount you wish to withdraw and select your preferred bank account. Processing typically takes 1-2 business days.",
+  // },
+  // {
+  //   id: "regulations",
+  //   question: "Is Hamma regulated by the Nigerian SEC?",
+  //   answer: "Yes, Hamma is fully regulated by the Securities and Exchange Commission of Nigeria and complies with all financial regulations and standards required for stock trading platforms in Nigeria.",
+  // },
 ];
 
 const FaqSection = () => {

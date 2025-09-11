@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { Link } from "wouter";
 
 const steps = [
   {
@@ -63,11 +62,9 @@ const HowItWorksSection = () => {
         </div>
 
         <div className="mt-16 text-center">
-          <Link href="/auth">
-            <Button size="lg" className="rounded-full px-8">
-              Get Started Now
-            </Button>
-          </Link>
+          <Button size="lg" className="rounded-full px-8" asChild>
+            <a href="https://www.gohamma.com/register">Get Started Now</a>
+          </Button>
         </div>
       </div>
     </section>

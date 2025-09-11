@@ -52,7 +52,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {/* <li className="flex items-start">
                 <MapPin className="mt-1 mr-3 text-primary min-h-4 min-w-4" size={24} />
-                <span>Adepate House, 44 Montgomery Rd, Yaba Lagos, Nigeria</span>
+                <span>Adepate House, 42 Montgomery Rd, Yaba Lagos, Nigeria</span>
               </li> */}
               <li >
                 <a className="flex items-start hover:underline" href="mailto:hello@hamma.trade" >

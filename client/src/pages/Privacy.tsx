@@ -122,7 +122,7 @@ const PrivacyPage = () => {
               <ul>
                 <li>Email: hello@hamma.trade</li>
                 <li>Phone: +234 906 556 6388</li>
-                {/* <li>Address: Adepate House, 44 Montgomery Rd, Yaba Lagos</li> */}
+                {/* <li>Address: Adepate House, 42 Montgomery Rd, Yaba Lagos</li> */}
               </ul>
             </div>
           </div>
