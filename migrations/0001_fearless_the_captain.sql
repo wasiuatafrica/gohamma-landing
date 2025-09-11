@@ -1,0 +1,1 @@
+ALTER TABLE "user_quiz_results" ADD COLUMN "quiz_title" text NOT NULL;

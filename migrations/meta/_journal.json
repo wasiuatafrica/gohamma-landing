@@ -8,6 +8,13 @@
       "when": 1745590255752,
       "tag": "0000_tearful_the_liberteens",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1757595819732,
+      "tag": "0001_fearless_the_captain",
+      "breakpoints": true
     }
   ]
 }
