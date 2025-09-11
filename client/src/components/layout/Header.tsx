@@ -71,15 +71,15 @@ const Header = () => {
           <Link href="/about" className={getLinkClass("/about")}>
             About
           </Link>
-          <Link href="/fees" className={getLinkClass("/fees")}>
+          {/* <Link href="/fees" className={getLinkClass("/fees")}>
             Fees
-          </Link>
+          </Link> */}
           <Link href="/help" className={getLinkClass("/help")}>
             Help
           </Link>
-          <Link href="/university" className={getLinkClass("/university")}>
+          <a href="https://hot.hamma.trade" target="_blank" rel="noopener noreferrer" className={getLinkClass("/university")}>
             University
-          </Link>
+          </a>
         </div>
 
         <div className="flex items-center gap-4">
@@ -132,10 +132,10 @@ const Header = () => {
                 className="hidden md:flex"
                 asChild
               >
-                <Link href="/auth">Log In</Link>
+                <a href="https://www.gohamma.com/login" target="_blank" rel="noopener noreferrer">Log In</a>
               </Button>
               <Button asChild>
-                <Link href="/auth">Sign Up</Link>
+                <a href="https://www.gohamma.com/register" target="_blank" rel="noopener noreferrer">Sign Up</a>
               </Button>
             </>
           )}
@@ -159,19 +159,19 @@ const Header = () => {
             <Link href="/about" className={`py-2 ${getLinkClass("/about")}`} onClick={toggleMenu}>
               About
             </Link>
-            <Link href="/fees" className={`py-2 ${getLinkClass("/fees")}`} onClick={toggleMenu}>
+            {/* <Link href="/fees" className={`py-2 ${getLinkClass("/fees")}`} onClick={toggleMenu}>
               Fees
-            </Link>
+            </Link> */}
             <Link href="/help" className={`py-2 ${getLinkClass("/help")}`} onClick={toggleMenu}>
               Help
             </Link>
-            <Link href="/university" className={`py-2 ${getLinkClass("/university")}`} onClick={toggleMenu}>
+            <a href="https://hot.hamma.trade" target="_blank" rel="noopener noreferrer" className={`py-2 ${getLinkClass("/university")}`} onClick={toggleMenu}>
               University
-            </Link>
+            </a>
             {!user && (
-              <Link href="/auth" className={`py-2 ${getLinkClass("/auth")}`} onClick={toggleMenu}>
+              <a href="https://www.gohamma.com/register" target="_blank" rel="noopener noreferrer" className={`py-2 ${getLinkClass("/auth")}`} onClick={toggleMenu}>
                 Log In / Sign Up
-              </Link>
+              </a>
             )}
              {/* Add active state for dashboard/settings in mobile if needed */}
             {user && (

@@ -31,7 +31,7 @@ const Footer = () => {
               <li><Link href="/" className="hover:text-primary transition">Home</Link></li>
               <li><Link href="/market" className="hover:text-primary transition">Market</Link></li>
               <li><Link href="/about" className="hover:text-primary transition">About Us</Link></li>
-              <li><Link href="/fees" className="hover:text-primary transition">Pricing</Link></li>
+              {/* <li><Link href="/fees" className="hover:text-primary transition">Pricing</Link></li> */}
               <li><Link href="/help" className="hover:text-primary transition">Help & FAQs</Link></li>
             </ul>
           </div>
@@ -50,14 +50,14 @@ const Footer = () => {
           <div>
             <h4 className="font-bold mb-4">Contact</h4>
             <ul className="space-y-2">
-              <li className="flex items-start">
+              {/* <li className="flex items-start">
                 <MapPin className="mt-1 mr-3 text-primary min-h-4 min-w-4" size={24} />
-                <span>Adepate House, 44 Montgomery Rd, Yaba Lagos</span>
-              </li>
+                <span>Adepate House, 44 Montgomery Rd, Yaba Lagos, Nigeria</span>
+              </li> */}
               <li >
-                <a className="flex items-start hover:underline" href="mailto:traders@gohamma.com" >
+                <a className="flex items-start hover:underline" href="mailto:hello@hamma.trade" >
                 <Mail className="mt-1 mr-3 text-primary min-h-4 min-w-4" />
-                <span>traders@gohamma.com</span>
+                <span>hello@hamma.trade</span>
                 </a>
               </li>
 

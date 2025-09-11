@@ -94,9 +94,9 @@ const RefundPage = () => {
                 If you have questions about this Refund Policy or need assistance with a refund request, please contact us:
               </p>
               <ul>
-                <li>Email: support@gohamma.com</li>
-                <li>Phone: +234 800 123 4567</li>
-                <li>Address: 12th Floor, Victoria Island Tower, 1234 Adeola Odeku Street, Victoria Island, Lagos, Nigeria</li>
+                <li>Email: hello@hamma.trade</li>
+                <li>Phone: +234 906 556 6388</li>
+                {/* <li>Address: 12th Floor, Victoria Island Tower, 1234 Adeola Odeku Street, Victoria Island, Lagos, Nigeria</li> */}
               </ul>
             </div>
           </div>

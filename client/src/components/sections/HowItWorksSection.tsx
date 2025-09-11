@@ -7,18 +7,18 @@ const steps = [
     title: "Create Your Account",
     description: "Sign up in minutes with our simple, secure registration process. All you need is your basic information to get started."
   },
+//   {
+//     number: "02",
+//     title: "Fund Your Account",
+//     description: "Easily deposit funds using any Nigerian bank, debit card, or popular payment methods like Paystack and Flutterwave."
+//   },
   {
     number: "02",
-    title: "Fund Your Account",
-    description: "Easily deposit funds using any Nigerian bank, debit card, or popular payment methods like Paystack and Flutterwave."
-  },
-  {
-    number: "03",
     title: "Build Your Portfolio",
     description: "Browse Nigerian stocks, research companies, and add your selections to your personalized investment portfolio."
   },
   {
-    number: "04",
+    number: "03",
     title: "Trade & Monitor",
     description: "Execute trades in real-time and track your portfolio's performance with detailed analytics and visualizations."
   }

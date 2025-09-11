@@ -605,7 +605,7 @@ const HelpPage = () => {
                     <p className="text-muted-foreground mb-4">
                       Send us an email and we'll respond within 24 hours
                     </p>
-                    <p className="font-medium">traders@gohamma.com</p>
+                    <p className="font-medium">hello@hamma.trade</p>
                   </div>
                 </CardContent>
               </Card>
@@ -620,7 +620,7 @@ const HelpPage = () => {
                     <p className="text-muted-foreground mb-4">
                       Call us during business hours: 9AM - 5PM (Mon-Fri)
                     </p>
-                    <a href="http://wa.me/8001234567" target="_blank" rel="noopener noreferrer"  className="font-medium hover:underline">+234 800 123 4567</a>
+                    <a href="http://wa.me/2349065566388" target="_blank" rel="noopener noreferrer"  className="font-medium hover:underline">+234 906 556 6388</a>
                   </div>
                 </CardContent>
               </Card>

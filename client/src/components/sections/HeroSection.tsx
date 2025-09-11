@@ -20,11 +20,11 @@ const HeroSection = () => {
             <Button size="lg" asChild>
               <a href="/auth">Get Started</a>
             </Button>
-            <Button variant="outline" size="lg" className="border-primary text-primary" asChild>
+            {/* <Button variant="outline" size="lg" className="border-primary text-primary" asChild>
               <a href="/about">
                 Learn More <ArrowRight className="ml-2 h-4 w-4" />
               </a>
-            </Button>
+            </Button> */}
           </div>
         </div>
         

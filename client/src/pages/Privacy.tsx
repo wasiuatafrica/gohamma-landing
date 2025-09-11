@@ -20,7 +20,7 @@ const PrivacyPage = () => {
             <div className="prose prose-headings:font-bold prose-headings:text-foreground prose-p:text-muted-foreground max-w-none">
               <h2 className="text-2xl">1. Introduction</h2>
               <p>
-                Hamma Ltd ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website and services (collectively, the "Service").
+                Hamma ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website and services (collectively, the "Service").
               </p>
               <p>
                 Please read this Privacy Policy carefully. By accessing or using the Service, you acknowledge that you have read, understood, and agree to be bound by all the terms of this Privacy Policy.
@@ -120,9 +120,9 @@ const PrivacyPage = () => {
                 If you have questions or concerns about this Privacy Policy or our privacy practices, please contact us at:
               </p>
               <ul>
-                <li>Email: traders@gohamma.com</li>
-                <li>Phone: +234 800 123 4567</li>
-                <li>Address: Adepate House, 44 Montgomery Rd, Yaba Lagos</li>
+                <li>Email: hello@hamma.trade</li>
+                <li>Phone: +234 906 556 6388</li>
+                {/* <li>Address: Adepate House, 44 Montgomery Rd, Yaba Lagos</li> */}
               </ul>
             </div>
           </div>
