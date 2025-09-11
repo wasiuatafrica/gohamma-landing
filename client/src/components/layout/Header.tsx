@@ -81,7 +81,7 @@ const Header = () => {
             University
           </a>
           <a href="https://hamma.trade" target="_blank" rel="noopener noreferrer" className={getLinkClass("/hamma-trade")}>
-            Prop Trade
+            Prop Trading
           </a>
         </div>
 
@@ -172,7 +172,7 @@ const Header = () => {
               University
             </a>
             <a href="https://hamma.trade" target="_blank" rel="noopener noreferrer" className={`py-2 ${getLinkClass("/hamma-trade")}`} onClick={toggleMenu}>
-              Trade
+              Prop Trading
             </a>
             {!user && (
               <a href="https://www.gohamma.com/register" target="_blank" rel="noopener noreferrer" className={`py-2 ${getLinkClass("/auth")}`} onClick={toggleMenu}>

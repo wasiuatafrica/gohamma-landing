@@ -24,7 +24,7 @@ const Home = () => {
         <LiveTradingSection />
         <StatsSection />
         <TestimonialsSection />
-        <FaqSection />
+        {/* <FaqSection /> */}
         <CtaSection />
       </main>
       <Footer />
