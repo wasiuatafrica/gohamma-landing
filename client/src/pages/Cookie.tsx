@@ -20,7 +20,7 @@ const CookiePage = () => {
             <div className="prose prose-headings:font-bold prose-headings:text-foreground prose-p:text-muted-foreground max-w-none">
               <h2 className="text-2xl">1. Introduction</h2>
               <p>
-                This Cookie Policy explains how Hamma Ltd ("we", "our", or "us") uses cookies and similar technologies to recognize you when you visit our website ("Website"). It explains what these technologies are and why we use them, as well as your rights to control our use of them.
+                This Cookie Policy explains how Hamma ("we", "our", or "us") uses cookies and similar technologies to recognize you when you visit our website ("Website"). It explains what these technologies are and why we use them, as well as your rights to control our use of them.
               </p>
 
               <h2 className="text-2xl mt-8">2. What Are Cookies?</h2>
@@ -87,9 +87,9 @@ const CookiePage = () => {
                 If you have any questions about our use of cookies or other technologies, please contact us at:
               </p>
               <ul>
-                <li>Email: traders@gohamma.com</li>
-                <li>Phone: +234 800 123 4567</li>
-                <li>Address: Adepate House, 44 Montgomery Rd, Yaba Lagos</li>
+                <li>Email: hello@hamma.trade</li>
+                <li>Phone: +234 906 556 6388</li>
+                {/* <li>Address: Adepate House, 44 Montgomery Rd, Yaba Lagos</li> */}
               </ul>
             </div>
           </div>

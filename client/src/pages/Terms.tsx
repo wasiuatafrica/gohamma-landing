@@ -20,7 +20,7 @@ const TermsPage = () => {
             <div className="prose prose-headings:font-bold prose-headings:text-foreground prose-p:text-muted-foreground max-w-none">
               <h2 className="text-2xl">1. Introduction</h2>
               <p>
-                These Terms and Conditions ("Terms", "Terms and Conditions") govern your use of the Hamma website and application (the "Service") operated by Hamma Ltd ("us", "we", or "our").
+                These Terms and Conditions ("Terms", "Terms and Conditions") govern your use of the Hamma website and application (the "Service") operated by Hamma ("us", "we", or "our").
               </p>
               <p>
                 By accessing or using the Service, you agree to be bound by these Terms. If you disagree with any part of the terms, you may not access the Service.
@@ -93,9 +93,9 @@ const TermsPage = () => {
                 If you have any questions about these Terms, please contact us at:
               </p>
               <ul>
-                <li>Email: legal@gohamma.com</li>
-                <li>Phone: +234 800 123 4567</li>
-                <li>Address: 12th Floor, Victoria Island Tower, 1234 Adeola Odeku Street, Victoria Island, Lagos, Nigeria</li>
+                <li>Email: hello@hamma.trade</li>
+                <li>Phone: +234 906 556 6388</li>
+                {/* <li>Address: 12th Floor, Victoria Island Tower, 1234 Adeola Odeku Street, Victoria Island, Lagos, Nigeria</li> */}
               </ul>
             </div>
           </div>

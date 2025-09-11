@@ -162,7 +162,7 @@ const AboutPage = () => {
                     featuring Hamma in articles or promotional materials.
                   </p>
                   <p className="text-muted-foreground mb-6">
-                    For media inquiries, please contact our press team at <a className="font-medium cursor-pointer hover:underline" href={"mailto:traders@gohamma.com"} >traders@gohamma.com</a>
+                    For media inquiries, please contact our press team at <a className="font-medium cursor-pointer hover:underline" href={"mailto:hello@hamma.trade"} >hello@hamma.trade</a>
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <a href="/attached_assets.zip" download="hamma-logo-pack.zip">
