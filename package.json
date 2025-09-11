@@ -105,5 +105,8 @@
   },
   "optionalDependencies": {
     "bufferutil": "^4.0.8"
+  },
+  "devDependencies": {
+    "archiver": "^7.0.1"
   }
 }

@@ -4,6 +4,8 @@ import { storage } from "./storage";
 // Removed: import { setupAuth } from "./auth";
 import axios from 'axios'; // Added axios
 import { User as SelectUser } from "@shared/schema"; // Added User import
+import fs from 'fs';
+import path from 'path';
 
 // Define a type for the request object after authentication
 interface AuthenticatedRequest extends Request {
@@ -75,6 +77,19 @@ const authenticateToken = async (req: AuthenticatedRequest, res: Response, next:
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Removed: setupAuth(app);
+
+  // Static file routes with proper MIME types
+  app.get('/hamma-logo-pack.zip', (req: Request, res: Response) => {
+    const filePath = path.join(process.cwd(), 'public', 'hamma-logo-pack.zip');
+    
+    if (!fs.existsSync(filePath)) {
+      return res.status(404).json({ error: 'Logo pack not found' });
+    }
+    
+    res.setHeader('Content-Type', 'application/zip');
+    res.setHeader('Content-Disposition', 'attachment; filename="hamma-logo-pack.zip"');
+    res.sendFile(filePath);
+  });
 
   // API routes
   app.get('/api/stocks', (req: Request, res: Response) => { // Added types
