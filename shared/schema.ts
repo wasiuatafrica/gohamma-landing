@@ -86,6 +86,7 @@ export const userQuizResults = pgTable("user_quiz_results", {
   id: serial("id").primaryKey(),
   userId: integer("user_id").references(() => users.id).notNull(),
   quizId: integer("quiz_id").references(() => quizzes.id).notNull(),
+  quizTitle: text("quiz_title").notNull(), // Add quiz title column
   score: integer("score").notNull(),
   totalQuestions: integer("total_questions").notNull(),
   completed: boolean("completed").notNull().default(false),
@@ -127,6 +128,7 @@ export const insertQuestionSchema = createInsertSchema(questions).pick({
 export const insertUserQuizResultSchema = createInsertSchema(userQuizResults).pick({
   userId: true,
   quizId: true,
+  quizTitle: true, // Add quiz title to insert schema
   score: true,
   totalQuestions: true,
   completed: true,

@@ -18,10 +18,90 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { useQuery } from "@tanstack/react-query";
 import { Course, Lesson, Quiz, UserQuizResult } from "@shared/schema";
-import { useAuth } from "@/hooks/use-auth";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { apiRequest } from "@/lib/queryClient";
-import { QuizContent } from "@/components/university/QuizContent";
+ import { useAuth } from "@/hooks/use-auth";
+ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+ import { apiRequest, getQueryFn } from "@/lib/queryClient"; // Import getQueryFn here
+ import { QuizContent } from "@/components/university/QuizContent";
+ 
+ 
+// Helper component to fetch quiz/course details if needed for My Progress tab
+const QuizResultCard = ({ result, quizzesForSelectedCourse, allCourses }: { result: UserQuizResult, quizzesForSelectedCourse: Quiz[], allCourses: Course[] }) => {
+  // Try finding the quiz in the quizzes loaded for the currently selected course
+  let quiz = quizzesForSelectedCourse.find((q) => q.id === result.quizId);
+
+  // If quiz wasn't found in the current course's list, fetch it individually
+  // Note: Ensure the query key is unique per quiz ID to avoid conflicts
+  const { data: fetchedQuiz, isLoading: isLoadingQuiz } = useQuery<Quiz>({
+     queryKey: ["/api/university/quizzes", result.quizId], // Unique key per quiz
+     enabled: !quiz, // Only fetch if not found in the initial list
+      staleTime: Infinity, // Cache fetched quiz details indefinitely as they are unlikely to change
+      gcTime: Infinity, // Use gcTime instead of cacheTime
+      queryFn: getQueryFn({ on401: "returnNull" }), // Pass options to getQueryFn
+    });
+  
+    // If we fetched the quiz individually, use that data
+  if (!quiz && fetchedQuiz) {
+    quiz = fetchedQuiz;
+  }
+
+  // Find the course using the quiz's courseId (either from initial list or fetched)
+  const course = allCourses.find((c) => c.id === quiz?.courseId);
+
+  const scorePercentage = (result.score / result.totalQuestions) * 100;
+  const quizTitle = quiz?.title || (isLoadingQuiz ? "Loading..." : "Unknown Quiz");
+  const courseTitle = course?.title || (isLoadingQuiz ? "" : "Unknown Course"); // Don't show "Unknown Course" while loading quiz
+
+  const getGradeColor = (grade: string | null) => {
+    if (!grade) return "bg-gray-100 text-gray-800";
+    switch (grade) {
+      case "1st Class": return "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100";
+      case "2nd Class": return "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100";
+      case "3rd Class": return "bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-100";
+      default: return "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100";
+    }
+  };
+
+  const getGradeIcon = (grade: string | null) => {
+    if (!grade) return null;
+    switch (grade) {
+      case "1st Class": return <Award className="h-4 w-4 mr-1" />;
+      case "2nd Class": return <BadgeCheck className="h-4 w-4 mr-1" />;
+      case "3rd Class": return <Check className="h-4 w-4 mr-1" />;
+      default: return null;
+    }
+  };
+
+
+  return (
+    <Card key={result.id}>
+      <CardHeader className="pb-2">
+        <CardTitle className="text-lg">{quizTitle}</CardTitle>
+        <CardDescription>{courseTitle}</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-medium">
+              Score: {result.score}/{result.totalQuestions}
+            </span>
+            <Badge className={getGradeColor(result.grade)}>
+              {getGradeIcon(result.grade)}
+              {result.grade}
+            </Badge>
+          </div>
+          <Progress value={scorePercentage} className="h-2" />
+          <div className="text-xs text-muted-foreground mt-1">
+            Completed{" "}
+            {result.completedAt
+              ? new Date(result.completedAt).toLocaleDateString()
+              : ""}
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
+
 
 type LeaderboardEntry = UserQuizResult & {
   username: string;
@@ -267,6 +347,9 @@ const University = () => {
                                           src={selectedLesson.videoUrl}
                                           className="w-full h-full rounded-lg border"
                                           allowFullScreen
+                                          referrerPolicy="strict-origin-when-cross-origin"
+                                          frameBorder="0"
+                                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                           title={selectedLesson.title}
                                         ></iframe>
                                       </div>
@@ -358,52 +441,15 @@ const University = () => {
                   {quizResults.length > 0 ? (
                     <div className="space-y-6">
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        {quizResults.map((result: UserQuizResult) => {
-                          const quiz = quizzes.find((q: Quiz) => q.id === result.quizId);
-                          const course = courses.find(
-                            (c: Course) => c.id === quiz?.courseId
-                          );
-                          const scorePercentage =
-                            (result.score / result.totalQuestions) * 100;
-
-                          return (
-                            <Card key={result.id}>
-                              <CardHeader className="pb-2">
-                                <CardTitle className="text-lg">
-                                  {quiz?.title || "Unknown Quiz"}
-                                </CardTitle>
-                                <CardDescription>
-                                  {course?.title || "Unknown Course"}
-                                </CardDescription>
-                              </CardHeader>
-                              <CardContent>
-                                <div className="space-y-3">
-                                  <div className="flex items-center justify-between">
-                                    <span className="text-sm font-medium">
-                                      Score: {result.score}/{result.totalQuestions}
-                                    </span>
-                                    <Badge
-                                      className={getGradeColor(result.grade)}
-                                    >
-                                      {getGradeIcon(result.grade)}
-                                      {result.grade}
-                                    </Badge>
-                                  </div>
-                                  <Progress
-                                    value={scorePercentage}
-                                    className="h-2"
-                                  />
-                                  <div className="text-xs text-muted-foreground mt-1">
-                                    Completed{" "}
-                                    {result.completedAt
-                                      ? new Date(result.completedAt).toLocaleDateString()
-                                      : ""}
-                                  </div>
-                                </div>
-                              </CardContent>
-                            </Card>
-                          );
-                        })}
+                        {quizResults.map((result: UserQuizResult) => (
+                          // Use the helper component
+                          <QuizResultCard
+                            key={result.id}
+                            result={result}
+                            quizzesForSelectedCourse={quizzes} // Pass quizzes for selected course
+                            allCourses={courses} // Pass all courses
+                          />
+                        ))}
                       </div>
                     </div>
                   ) : (
@@ -451,11 +497,20 @@ const University = () => {
                       </thead>
                       <tbody className="divide-y">
                         {leaderboard.map((result: LeaderboardEntry, index: number) => {
-                          const quiz = quizzes.find(
-                            (q) => q.id === result.quizId
-                          );
-                          const scorePercentage =
-                            (result.score / result.totalQuestions) * 100;
+                          // Use the same helper component logic for leaderboard for consistency
+                          // We need a way to get *all* quizzes here too, or fetch individually.
+                          // For now, let's reuse the logic pattern, assuming 'quizzes' might be incomplete.
+
+                          // Try finding the quiz in the quizzes loaded for the currently selected course
+                          let quiz = quizzes.find((q) => q.id === result.quizId);
+
+                          // If quiz wasn't found in the current course's list, fetch it individually
+                          // We need to wrap this part in a component to use the hook, or fetch all quizzes upfront.
+                          // Let's simplify for now and accept it might show "Unknown Quiz" on leaderboard
+                          // if the quiz isn't in the currently selected course's list.
+                          // A better fix would involve fetching all quizzes or modifying the leaderboard API.
+
+                          const scorePercentage = (result.score / result.totalQuestions) * 100;
 
                           return (
                             <tr
@@ -477,7 +532,8 @@ const University = () => {
                                 {user?.id === result.userId && " (You)"}
                               </td>
                               <td className="px-4 py-3">
-                                {quiz?.title || "Unknown Quiz"}
+                                {/* Directly use quizTitle from the result object */}
+                                {result.quizTitle}
                               </td>
                               <td className="px-4 py-3">
                                 {result.score}/{result.totalQuestions}{" "}
