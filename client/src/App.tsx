@@ -21,6 +21,7 @@ import { ThemeProvider } from "@/components/theme/theme-provider";
 import Settings from "./pages/Settings";
 import SupportChatbot from "./components/SupportChat/SupportChatbot";
 import { ChatbotProvider } from "./context/ChatbotContext"; // Import ChatbotProvider
+import WhatsAppWidget from "./components/WhatsAppWidget";
 
 function Router() {
   return (
@@ -55,7 +56,7 @@ function Router() {
 // Component to handle conditional rendering based on location
 function ChatbotRenderer() {
   const [location] = useLocation();
-  return location !== "/" ? <SupportChatbot /> : null;
+  return location !== "/" ? <WhatsAppWidget /> : null;
 }
 
 
