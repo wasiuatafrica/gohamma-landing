@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Briefcase, Award, Users, ShieldCheck, Clock, BookOpen } from "lucide-react";
 import hammaIcon from '../../../attached_assets/7.png';
 import hammaIcon2 from '../../../attached_assets/8.png';
+import hammafavicon from '../../../attached_assets/favicon.ico';
+
 import HammaLogo1 from '../../../attached_assets/Hamma Logo (1).png';
 
 const AboutPage = () => {
@@ -165,7 +167,7 @@ const AboutPage = () => {
                     For media inquiries, please contact our press team at <a className="font-medium cursor-pointer hover:underline" href={"mailto:hello@hamma.trade"} >hello@hamma.trade</a>
                   </p>
                   <div className="flex flex-wrap gap-3">
-                    <a href="/attached_assets.zip" download="hamma-logo-pack.zip">
+                    <a href="/hamma-logo-pack.zip" download="hamma-logo-pack.zip">
                       <Button variant="outline" className="gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-download">
                           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -175,6 +177,7 @@ const AboutPage = () => {
                         Logo Pack
                       </Button>
                     </a>
+                    
                     {/* <Button variant="outline" className="gap-2">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-file-text">
                         <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
@@ -214,7 +217,7 @@ const AboutPage = () => {
                   </div>
                   <div className="bg-white p-4 rounded-lg border">
                     <img
-                      src={"/src/assets/favicon.ico"}
+                      src={hammafavicon}
                       alt="Hamma icon"
                       className="h-12 mx-auto mb-2"
                     />
