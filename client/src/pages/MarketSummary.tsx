@@ -8,23 +8,24 @@ import { Badge } from "@/components/ui/badge";
 import { formatNumberShort } from "@/lib/utils";
 
 interface MarketSummary {
-  nse_index: number; // Renamed from nseIndex
-  point_change: number; // Renamed from change
+  symbol: string;
+  exchange: string;
+  last_update_time: string;
+  point_change: number;
   percent_change: number;
-  volume: string;
-  market_capitalization: string; // Renamed from marketCap
-  advancers: number;
-  decliners: number;
-  unchanged: number;
-  last_update_time: string; // Renamed from lastUpdated
+  last_price: number;
+  volume: number;
+  market_capitalization: number;
+  market_breadth: any[];
   top_gainers: Stock[];
   top_losers: Stock[];
 }
 
 interface Stock {
   symbol: string;
-  current_price: number;
-  change: number;
+  last_close: number;
+  todays_close: number;
+  percentage_change: number;
 }
 
 const MarketSummaryPage = () => {
@@ -74,7 +75,7 @@ const MarketSummaryPage = () => {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold">{(marketSummary?.nse_index||0)?.toLocaleString()}</div> {/* Changed to use nse_index */}
+                    <div className="text-2xl font-bold">{(marketSummary?.last_price||0)?.toLocaleString()}</div>
                     <div className="flex items-center mt-1">
                       <Badge
                         variant={marketSummary.percent_change >= 0 ? "default" : "destructive"}
@@ -101,9 +102,9 @@ const MarketSummaryPage = () => {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold">₦{formatNumberShort(marketSummary.market_capitalization)}</div>
+                    <div className="text-2xl font-bold">₦{formatNumberShort(marketSummary.market_capitalization.toString())}</div>
                     <div className="text-muted-foreground text-sm mt-1">
-                      Volume: {formatNumberShort(marketSummary.volume)} shares
+                      Volume: {formatNumberShort(marketSummary.volume.toString())} shares
                     </div>
                   </CardContent>
                 </Card>
@@ -112,23 +113,13 @@ const MarketSummaryPage = () => {
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-medium flex items-center">
                       <Repeat className="w-4 h-4 mr-2 text-primary" />
-                      Market Breadth
+                      Exchange
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="grid grid-cols-3 gap-2">
-                      <div>
-                        <div className="text-lg font-bold text-green-500">{marketSummary.advancers||0}</div>
-                        <div className="text-xs text-muted-foreground">Gainers</div>
-                      </div>
-                      <div>
-                        <div className="text-lg font-bold text-red-500">{marketSummary.decliners||0}</div>
-                        <div className="text-xs text-muted-foreground">Losers</div>
-                      </div>
-                      <div>
-                        <div className="text-lg font-bold">{marketSummary.unchanged||0}</div>
-                        <div className="text-xs text-muted-foreground">Unchanged</div>
-                      </div>
+                    <div className="text-2xl font-bold">{marketSummary.exchange}</div>
+                    <div className="text-muted-foreground text-sm mt-1">
+                      {marketSummary.symbol} Index
                     </div>
                   </CardContent>
                 </Card>
@@ -171,10 +162,10 @@ const MarketSummaryPage = () => {
                         <div key={stock.symbol} className="flex justify-between items-center py-2 border-b border-border">
                           <div>
                             <div className="font-medium">{stock.symbol}</div>
-                            <div className="text-sm text-muted-foreground">₦{stock.current_price.toFixed(2)}</div>
+                            <div className="text-sm text-muted-foreground">₦{stock.todays_close.toFixed(2)}</div>
                           </div>
                           <Badge className="bg-green-500/20 text-green-500">
-                            +{stock.change.toFixed(2)}%
+                            +{stock.percentage_change.toFixed(2)}%
                           </Badge>
                         </div>
                       ))}
@@ -200,10 +191,10 @@ const MarketSummaryPage = () => {
                         <div key={stock.symbol} className="flex justify-between items-center py-2 border-b border-border">
                           <div>
                             <div className="font-medium">{stock.symbol}</div>
-                            <div className="text-sm text-muted-foreground">₦{stock.current_price.toFixed(2)}</div>
+                            <div className="text-sm text-muted-foreground">₦{stock.todays_close.toFixed(2)}</div>
                           </div>
                           <Badge className="bg-red-500/20 text-red-500">
-                            {stock.change.toFixed(2)}%
+                            {stock.percentage_change.toFixed(2)}%
                           </Badge>
                         </div>
                       ))}
