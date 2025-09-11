@@ -1,13 +1,13 @@
-import { createContext, ReactNode, useContext, useState, useEffect } from "react"; // Added useState, useEffect
+import { useToast } from "@/hooks/use-toast";
+import { insertUserSchema, User } from "@shared/schema"; // Removed non-existent userSchema import
 import {
-  useQuery,
   useMutation,
   UseMutationResult,
+  useQuery,
 } from "@tanstack/react-query";
-import { User, insertUserSchema } from "@shared/schema"; // Removed non-existent userSchema import
-import { getQueryFn, apiRequest, queryClient } from "../lib/queryClient";
-import { useToast } from "@/hooks/use-toast";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react"; // Added useState, useEffect
 import { z } from "zod";
+import { apiRequest, getQueryFn, queryClient } from "../lib/queryClient";
 
 // Define types for API responses based on user feedback
 // Removed duplicate LoginResponse definition here
@@ -105,18 +105,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     // Get Geolocation
     let geoLocation = ''; // Renamed from location
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          geoLocation = `${position.coords.latitude}, ${position.coords.longitude}`; // Renamed
-          setDeviceInfo(prev => ({ ...prev, location:geoLocation })); // Renamed
-        },
-        (error) => {
-          console.error("Geolocation error:", error);
-          // Handle error or set default location if needed
-        }
-      );
-    }
+    // Commented out geolocation request to prevent location permission prompt
+    // if (navigator.geolocation) {
+    //   navigator.geolocation.getCurrentPosition(
+    //     (position) => {
+    //       geoLocation = `${position.coords.latitude}, ${position.coords.longitude}`; // Renamed
+    //       setDeviceInfo(prev => ({ ...prev, location:geoLocation })); // Renamed
+    //     },
+    //     (error) => {
+    //       console.error("Geolocation error:", error);
+    //       // Handle error or set default location if needed
+    //     }
+    //   );
+    // }
 
     // Get IP Address (using external service like go-hamma)
     let ip_address: string | null = null;
