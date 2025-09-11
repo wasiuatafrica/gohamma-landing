@@ -415,7 +415,7 @@ const HelpPage = () => {
             </div>
 
             <Tabs defaultValue="account" className="max-w-4xl mx-auto">
-              <TabsList className="grid w-full grid-cols-4">
+              <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4">
                 <TabsTrigger value="account">Account</TabsTrigger>
                 <TabsTrigger value="trading">Trading</TabsTrigger>
                 <TabsTrigger value="deposits">Deposits & Withdrawals</TabsTrigger>
