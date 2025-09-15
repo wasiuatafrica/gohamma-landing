@@ -63,7 +63,7 @@ const HowItWorksSection = () => {
 
         <div className="mt-16 text-center">
           <Button size="lg" className="rounded-full px-8" asChild>
-            <a href="https://www.gohamma.com/register">Get Started Now</a>
+            <a href="https://www.gohamma.com/register?source=landing" target="_blank" rel="noopener noreferrer">Get Started Now</a>
           </Button>
         </div>
       </div>

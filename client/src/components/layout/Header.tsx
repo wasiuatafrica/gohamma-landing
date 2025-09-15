@@ -138,7 +138,7 @@ const Header = () => {
                 <a href="https://www.gohamma.com/login" target="_blank" rel="noopener noreferrer">Log In</a>
               </Button>
               <Button asChild>
-                <a href="https://www.gohamma.com/register" target="_blank" rel="noopener noreferrer">Sign Up</a>
+                <a href="https://www.gohamma.com/register?source=landing" target="_blank" rel="noopener noreferrer">Sign Up</a>
               </Button>
             </>
           )}
@@ -175,7 +175,7 @@ const Header = () => {
               Prop Trading
             </a>
             {!user && (
-              <a href="https://www.gohamma.com/register" target="_blank" rel="noopener noreferrer" className={`py-2 ${getLinkClass("/auth")}`} onClick={toggleMenu}>
+              <a href="https://www.gohamma.com/register?source=landing" target="_blank" rel="noopener noreferrer" className={`py-2 ${getLinkClass("/auth")}`} onClick={toggleMenu}>
                 Log In / Sign Up
               </a>
             )}
