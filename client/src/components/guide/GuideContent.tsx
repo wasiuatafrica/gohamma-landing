@@ -66,7 +66,7 @@ export function GuideContent({ title, description, steps, className }: GuideCont
                           <img 
                             src={media.url} 
                             alt={media.caption || `Step ${index + 1} image`} 
-                            className="w-full object-cover rounded-md border border-border"
+                            className=" object-contain rounded-md border border-border"
                           />
                           {media.caption && (
                             <p className="text-sm text-muted-foreground mt-1">{media.caption}</p>

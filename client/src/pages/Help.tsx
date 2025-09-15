@@ -394,21 +394,13 @@ const HelpPage = () => {
                                                                 />
                                                         </div>
                                                 ) : (
-                                                        //       <GuideSelector
-                                                        //         categories={guideCategories}
-                                                        //         onSelectGuide={handleSelectGuide}
-                                                        //         selectedCategory={selectedCategory}
-                                                        //         selectedGuide={selectedGuide}
-                                                        //       />
-                                                        <div className="text-center mt-8">
-                                                                <Button
-                                                                        variant="outline"
-                                                                        className="gap-2"
-                                                                        onClick={() => window.open('https://drive.google.com/file/d/1hWuDvte-wB9OpdCg17Ak41VFZeQ1PsvG/view?usp=sharing', '_blank')}
-                                                                >
-                                                                        View Detailed Guides <ChevronRight className="h-4 w-4" />
-                                                                </Button>
-                                                        </div>
+                                                        <GuideSelector
+                                                                categories={guideCategories}
+                                                                onSelectGuide={handleSelectGuide}
+                                                                selectedCategory={selectedCategory}
+                                                                selectedGuide={selectedGuide}
+                                                        />
+
                                                 )}
                                         </section>
 
@@ -583,7 +575,7 @@ const HelpPage = () => {
                                                         </TabsContent>
                                                 </Tabs>
 
-                                                <div className="text-center mt-8">
+                                                {/* <div className="text-center mt-8">
                                                         <Button
                                                                 variant="outline"
                                                                 className="gap-2"
@@ -591,7 +583,7 @@ const HelpPage = () => {
                                                         >
                                                                 View Detailed Guides <ChevronRight className="h-4 w-4" />
                                                         </Button>
-                                                </div>
+                                                </div> */}
                                         </section>
 
                                         {/* Contact Us Section */}
