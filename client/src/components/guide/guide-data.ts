@@ -867,22 +867,22 @@ export const guideCategories: Category[] = [
 						title: 'Access the Signals:',
 						content: 'Upon activation, you will see a list of AI-suggested trades, each with its confidence level measured in percentage.',
 						media: [
-							// {
-							// 	type: 'image',
-							// 	url: 'https://res.cloudinary.com/ddlupbcws/image/upload/q_auto/v1757919476/Screenshot_2025-09-15_075719_msi3r8.webp',
-							// 	caption: ''
-							// }
+							{
+								type: 'image',
+								url: 'https://res.cloudinary.com/ddlupbcws/image/upload/q_auto/v1757944026/Screenshot_2025-09-15_143956_yqi0ak.webp',
+								caption: ''
+							}
 						]
 					},
 					{
 						title: 'Execute the Trade',
 						content: 'Click the Long or Short button next to a signal you wish to follow.',
 						media: [
-							// {
-							// 	type: 'image',
-							// 	url: 'https://res.cloudinary.com/ddlupbcws/image/upload/q_auto/v1757919476/Screenshot_2025-09-15_075719_msi3r8.webp',
-							// 	caption: ''
-							// }
+							{
+								type: 'image',
+								url: 'https://res.cloudinary.com/ddlupbcws/image/upload/q_auto/v1757944026/Screenshot_2025-09-15_143956_yqi0ak.webp',
+								caption: ''
+							}
 						]
 					},
 					{
