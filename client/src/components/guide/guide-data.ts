@@ -39,18 +39,18 @@ export const guideCategories: Category[] = [
         steps: [
           {
             title: 'Create Your Account',
-            content: 'Visit the HAMMA website and click on the "Sign Up" button at the top right corner of the page. Fill in your personal details including your full name, email address, and phone number. Create a strong password that includes uppercase letters, lowercase letters, numbers, and special characters.',
+            content: 'Visit the Registration Page: Start by navigating to the Gohamma.com website and clicking on the "Register" or "Sign Up" button to begin the process.',
             media: [
               {
                 type: 'image',
-                url: 'https://placehold.co/600x400/png',
+                url: 'https://res.cloudinary.com/ddlupbcws/image/upload/q_auto/v1757695841/Screenshot_2025-09-12_174833_pyktqu.webp',
                 caption: 'The HAMMA signup page showing the registration form'
               }
             ]
           },
           {
             title: 'Verify Your Identity',
-            content: 'To comply with regulatory requirements, you\'ll need to verify your identity. Upload a valid government-issued ID (National ID, International Passport, or Driver\'s License) and a recent utility bill or bank statement for proof of address. These documents will be reviewed within 24 hours.',
+            content: '',
             media: [
               {
                 type: 'image',
