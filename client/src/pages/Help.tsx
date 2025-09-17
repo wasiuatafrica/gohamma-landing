@@ -416,48 +416,94 @@ const HelpPage = () => {
                                                 </div>
 
                                                 <Tabs defaultValue="account" className="max-w-4xl mx-auto">
-                                                        <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4">
+                                                        <TabsList className="grid w-full grid-cols-2 lg:grid-cols-3">
                                                                 <TabsTrigger value="account">Account</TabsTrigger>
                                                                 <TabsTrigger value="trading">Trading</TabsTrigger>
-                                                                <TabsTrigger value="deposits">Deposits & Withdrawals</TabsTrigger>
+                                                                {/* <TabsTrigger value="deposits">Deposits & Withdrawals</TabsTrigger> */}
                                                                 <TabsTrigger value="security">Security</TabsTrigger>
                                                         </TabsList>
 
                                                         <TabsContent value="account" className="mt-6">
                                                                 <Accordion type="single" collapsible className="w-full">
                                                                         <AccordionItem value="item-1">
-                                                                                <AccordionTrigger>How do I open an account?</AccordionTrigger>
+                                                                                <AccordionTrigger>How do I open a Hamma account?</AccordionTrigger>
                                                                                 <AccordionContent>
-                                                                                        To open a Hamma account, click the "Sign Up" button at the top of the page.
-                                                                                        You'll need to provide personal information, including your BVN, valid ID, proof of address,
-                                                                                        and bank details. The verification process typically takes 1-2 business days.
-                                                                                        Once approved, you can fund your account and start trading.
+                                                                                        To open an account, click the "Sign Up" button at the top of the page and fill in your details. The process is instant.
                                                                                 </AccordionContent>
                                                                         </AccordionItem>
                                                                         <AccordionItem value="item-2">
                                                                                 <AccordionTrigger>What documents do I need to register?</AccordionTrigger>
                                                                                 <AccordionContent>
-                                                                                        To register, you'll need to provide your BVN (Bank Verification Number),
-                                                                                        a valid government-issued photo ID (National ID, driver's license, or passport),
-                                                                                        proof of address (utility bill or bank statement from the last 3 months), and your bank account details.
+                                                                                        You will need your personal details, a valid government ID (like a National ID, driver's license, or passport), proof of your address (like a utility bill or bank statement from the last 3 months), and your bank account information.
                                                                                 </AccordionContent>
                                                                         </AccordionItem>
                                                                         <AccordionItem value="item-3">
-                                                                                <AccordionTrigger>How do I update my personal information?</AccordionTrigger>
+                                                                                <AccordionTrigger>How do I update my personal details?</AccordionTrigger>
                                                                                 <AccordionContent>
-                                                                                        You can update most of your personal information in the "Account Settings" section
-                                                                                        after logging in. For changes to critical information like your name or BVN,
-                                                                                        you may need to contact customer support with appropriate documentation.
+                                                                                        You can update most of your information in the "Profile" section after you log in. If you need to change important details like your name, bank information, or ID, you will need to contact customer support and provide the right documents.
                                                                                 </AccordionContent>
                                                                         </AccordionItem>
                                                                         <AccordionItem value="item-4">
-                                                                                <AccordionTrigger>Can I have multiple Hamma accounts?</AccordionTrigger>
+                                                                                <AccordionTrigger>Can I have more than one Hamma account?</AccordionTrigger>
                                                                                 <AccordionContent>
-                                                                                        No, each individual is limited to one Hamma account. This policy is in place
-                                                                                        to comply with regulatory requirements and prevent fraudulent activities.
-                                                                                        However, you can have different types of accounts (personal and corporate) if you qualify.
+                                                                                        No, you can only have one Hamma account per person. However, you can have multiple trading accounts under that one main account. This rule helps us follow regulations and keep things secure.
                                                                                 </AccordionContent>
                                                                         </AccordionItem>
+                                                                        <AccordionItem value="item-5">
+                                                                                <AccordionTrigger>How old do I need to be to open an account?</AccordionTrigger>
+                                                                                <AccordionContent>
+                                                                                        You must be at least 18 years old to open a Hamma account.
+                                                                                </AccordionContent>
+                                                                        </AccordionItem>
+                                                                        <AccordionItem value="item-6">
+                                                                                <AccordionTrigger>What is the difference between my Hamma account and my trading account?</AccordionTrigger>
+                                                                                <AccordionContent>
+                                                                                        Your Hamma account is your main profile and wallet. You can have several trading accounts linked to it for different goals or strategies, but they are all managed under your one Hamma account.
+                                                                                </AccordionContent>
+                                                                        </AccordionItem>
+                                                                        <AccordionItem value="item-7">
+                                                                                <AccordionTrigger>Can I change my registered email address?</AccordionTrigger>
+                                                                                <AccordionContent>
+                                                                                        No, you cannot change your registered email address.
+                                                                                </AccordionContent>
+                                                                        </AccordionItem>
+                                                                        <AccordionItem value="item-8">
+                                                                                <AccordionTrigger>What happens if I forget my password?</AccordionTrigger>
+                                                                                <AccordionContent>
+                                                                                        On the login page, click "Forgot Password?" and follow the instructions. A link to reset your password will be sent to your registered email address.
+                                                                                </AccordionContent>
+                                                                        </AccordionItem>
+                                                                        <AccordionItem value="item-9">
+                                                                                <AccordionTrigger>How do I close my account?</AccordionTrigger>
+                                                                                <AccordionContent>
+                                                                                        To close your account, you must first withdraw all your funds. Then, please contact customer support and submit a request.
+                                                                                </AccordionContent>
+                                                                        </AccordionItem>
+                                                                        <AccordionItem value="item-10">
+                                                                                <AccordionTrigger>Can I use a joint bank account to register?</AccordionTrigger>
+                                                                                <AccordionContent>
+                                                                                        No, the bank account you register with must be in your name only. This helps us follow regulations and protect your funds.
+                                                                                </AccordionContent>
+                                                                        </AccordionItem>
+                                                                        <AccordionItem value="item-11">
+                                                                                <AccordionTrigger>Is there a fee to open an account?</AccordionTrigger>
+                                                                                <AccordionContent>
+                                                                                        No, opening a Hamma account is completely free.
+                                                                                </AccordionContent>
+                                                                        </AccordionItem>
+                                                                        <AccordionItem value="item-12">
+                                                                                <AccordionTrigger>Why do I need to provide proof of address?</AccordionTrigger>
+                                                                                <AccordionContent>
+                                                                                        We need proof of address to confirm your identity and location. This is a standard practice required by financial regulations to prevent fraud and money laundering.
+                                                                                </AccordionContent>
+                                                                        </AccordionItem>
+                                                                        <AccordionItem value="item-13">
+                                                                                <AccordionTrigger>How long does it take for my new documents to be verified?</AccordionTrigger>
+                                                                                <AccordionContent>
+                                                                                        After you submit new documents, such as an updated ID, it typically takes 1 business days for our team to review and verify them.
+                                                                                </AccordionContent>
+                                                                        </AccordionItem>
+
                                                                 </Accordion>
                                                         </TabsContent>
 
@@ -466,39 +512,78 @@ const HelpPage = () => {
                                                                         <AccordionItem value="item-1">
                                                                                 <AccordionTrigger>How do I place a trade?</AccordionTrigger>
                                                                                 <AccordionContent>
-                                                                                        To place a trade, log in to your account, navigate to the trading section,
-                                                                                        select the stock you want to trade, enter the quantity and set your price (market or limit),
-                                                                                        then review and confirm your order. Trades are executed during NSE trading hours
-                                                                                        (10:00 AM to 2:30 PM WAT, Monday to Friday, excluding holidays).
+                                                                                        Log in, go to the "Market" section, and choose the stock you want to buy or sell. Enter how many you want and the price you want to pay (market or limit). Review your order and confirm it. Trades are completed during the Nigerian Stock Exchange (NSE) trading hours, from 10:00 AM to 2:30 PM WAT, Monday to Friday.
                                                                                 </AccordionContent>
                                                                         </AccordionItem>
                                                                         <AccordionItem value="item-2">
                                                                                 <AccordionTrigger>What are the NSE trading hours?</AccordionTrigger>
                                                                                 <AccordionContent>
-                                                                                        The Nigerian Stock Exchange (NSE) operates from 10:00 AM to 2:30 PM West African Time (WAT),
-                                                                                        Monday to Friday, excluding public holidays and any special closures announced by the exchange.
+                                                                                        The Nigerian Stock Exchange (NSE) is open for trading from 10:00 AM to 2:30 PM WAT, Monday to Friday. It is closed on public holidays.
                                                                                 </AccordionContent>
                                                                         </AccordionItem>
                                                                         <AccordionItem value="item-3">
                                                                                 <AccordionTrigger>What types of orders can I place?</AccordionTrigger>
                                                                                 <AccordionContent>
-                                                                                        Hamma supports several order types: Market Orders (executed at the current best available price),
-                                                                                        Limit Orders (executed at a specified price or better), Day Orders (valid for the current trading day only),
-                                                                                        and Good-Till-Cancelled Orders (remain active until executed or cancelled).
+                                                                                        Hamma offers two types of orders:
+                                                                                        <ul className="list-disc list-inside pl-8">
+                                                                                                <li>Market Orders: Buys or sells your stock right away at the best available price.</li>
+                                                                                                <li>Limit Orders: Buys or sells your stock only when it reaches a specific price you choose.</li>
+                                                                                        </ul>
                                                                                 </AccordionContent>
                                                                         </AccordionItem>
                                                                         <AccordionItem value="item-4">
-                                                                                <AccordionTrigger>How long does it take for my trade to be executed?</AccordionTrigger>
+                                                                                <AccordionTrigger>How long does it take for my trade to be completed?</AccordionTrigger>
                                                                                 <AccordionContent>
-                                                                                        Market orders are typically executed immediately during trading hours if there's sufficient market liquidity.
-                                                                                        Limit orders are executed only when the stock reaches your specified price and may take longer
-                                                                                        or may not be executed if the price condition isn't met.
+                                                                                        If you place a market order, it's usually completed right away during trading hours. A limit order will only be completed if the stock reaches your chosen price, which could take longer or not happen at all.
                                                                                 </AccordionContent>
                                                                         </AccordionItem>
+                                                                        <AccordionItem value="item-5">
+                                                                                <AccordionTrigger>What is the minimum amount I can trade?</AccordionTrigger>
+                                                                                <AccordionContent>
+                                                                                        The minimum trade amount depends on the stock's price and the type of order. You can trade as little as one share of a company.
+                                                                                </AccordionContent>
+                                                                        </AccordionItem>
+                                                                        <AccordionItem value="item-6">
+                                                                                <AccordionTrigger>Can I trade outside of NSE trading hours?</AccordionTrigger>
+                                                                                <AccordionContent>
+                                                                                        No, all trades are processed during official NSE trading hours (10:00 AM to 2:30 PM WAT). You can place orders at any time, but they will only be executed when the market opens.
+                                                                                </AccordionContent>
+                                                                        </AccordionItem>
+                                                                        <AccordionItem value="item-7">
+                                                                                <AccordionTrigger>What is a trading fee?</AccordionTrigger>
+                                                                                <AccordionContent>
+                                                                                        A trading fee is a small charge for each trade you make. This fee is a combination of brokerage fees, exchange fees, and other charges. The details of the fees are shown before you confirm a trade.
+                                                                                </AccordionContent>
+                                                                        </AccordionItem>
+                                                                        <AccordionItem value="item-8">
+                                                                                <AccordionTrigger>Can I buy and sell shares on the same day?</AccordionTrigger>
+                                                                                <AccordionContent>
+                                                                                        Yes, you can. This is called day trading. As long as the market is open, you can buy and sell shares.
+                                                                                </AccordionContent>
+                                                                        </AccordionItem>
+                                                                        <AccordionItem value="item-9">
+                                                                                <AccordionTrigger>How can I see a stock's past performance?</AccordionTrigger>
+                                                                                <AccordionContent>
+                                                                                        On the “Market” section in the Hamma app, you will find a chart showing its price history over different time periods (e.g., daily, weekly, monthly, yearly).
+                                                                                </AccordionContent>
+                                                                        </AccordionItem>
+                                                                        <AccordionItem value="item-10">
+                                                                                <AccordionTrigger>What is a "bear market" and a "bull market"?</AccordionTrigger>
+                                                                                <AccordionContent>
+                                                                                        A bull market is when stock prices are generally rising. A bear market is when stock prices are generally falling.
+                                                                                </AccordionContent>
+                                                                        </AccordionItem>
+                                                                        <AccordionItem value="item-11">
+                                                                                <AccordionTrigger>Can I get a notification when a stock reaches a certain price?</AccordionTrigger>
+                                                                                <AccordionContent>
+                                                                                        Yes, you can set up price alerts. In the app, navigate to the “Alert” section. Choose the stock and set the price you want to be notified about. Here is a guide on with steps on how to go about it.
+                                                                                </AccordionContent>
+                                                                        </AccordionItem>
+
                                                                 </Accordion>
                                                         </TabsContent>
 
-                                                        <TabsContent value="deposits" className="mt-6">
+                                                        {/* <TabsContent value="deposits" className="mt-6">
                                                                 <Accordion type="single" collapsible className="w-full">
                                                                         <AccordionItem value="item-1">
                                                                                 <AccordionTrigger>How do I deposit funds?</AccordionTrigger>
@@ -533,42 +618,68 @@ const HelpPage = () => {
                                                                                 </AccordionContent>
                                                                         </AccordionItem>
                                                                 </Accordion>
-                                                        </TabsContent>
+                                                        </TabsContent> */}
 
                                                         <TabsContent value="security" className="mt-6">
                                                                 <Accordion type="single" collapsible className="w-full">
                                                                         <AccordionItem value="item-1">
                                                                                 <AccordionTrigger>How is my account protected?</AccordionTrigger>
                                                                                 <AccordionContent>
-                                                                                        Your Hamma account is protected with multiple security layers including
-                                                                                        128-bit SSL encryption, two-factor authentication (2FA), biometric login (where available),
-                                                                                        and automatic logout after inactivity. Our systems are regularly updated and audited
-                                                                                        for potential vulnerabilities.
+                                                                                        Your account is protected with multiple security features, including strong encryption, two-factor authentication (2FA), and automatic logouts. We regularly check our systems to keep them safe.
                                                                                 </AccordionContent>
                                                                         </AccordionItem>
                                                                         <AccordionItem value="item-2">
-                                                                                <AccordionTrigger>How do I enable two-factor authentication?</AccordionTrigger>
+                                                                                <AccordionTrigger>How do I turn on two-factor authentication (2FA)?</AccordionTrigger>
                                                                                 <AccordionContent>
-                                                                                        To enable two-factor authentication (2FA), log in to your account,
-                                                                                        go to "Security Settings," select "Two-Factor Authentication," and follow the prompts.
-                                                                                        You can choose between SMS-based verification or using an authenticator app like
-                                                                                        Google Authenticator or Authy.
+                                                                                        Log in, go to the "Profile" section, navigate to “Privacy and Security” and then toggle on the "Two-Factor Authentication." Use an app like Google Authenticator to scan the QR code and activate it using the code on the Authenticator app.
                                                                                 </AccordionContent>
                                                                         </AccordionItem>
                                                                         <AccordionItem value="item-3">
-                                                                                <AccordionTrigger>What should I do if I suspect unauthorized access?</AccordionTrigger>
+                                                                                <AccordionTrigger>What should I do if I think someone has accessed my account without permission?</AccordionTrigger>
                                                                                 <AccordionContent>
-                                                                                        If you suspect unauthorized access to your account, immediately change your password
-                                                                                        and contact our customer support team. We recommend enabling notifications for all account
-                                                                                        activities so you're alerted to any suspicious transactions.
+                                                                                        If you think someone has used your account without your permission, you should immediately change your password and contact our customer support team.
                                                                                 </AccordionContent>
                                                                         </AccordionItem>
                                                                         <AccordionItem value="item-4">
                                                                                 <AccordionTrigger>How often should I change my password?</AccordionTrigger>
                                                                                 <AccordionContent>
-                                                                                        We recommend changing your password every 3 months for optimal security.
-                                                                                        Choose a strong password with at least 12 characters, including upper and lowercase letters,
-                                                                                        numbers, and special characters. Avoid using the same password across multiple platforms.
+                                                                                        For the best security, we recommend changing your password every 3 months. Make sure your new password is at least 12 characters long and includes a mix of uppercase and lowercase letters, numbers, and symbols. Avoid using the same password for different accounts.
+                                                                                </AccordionContent>
+                                                                        </AccordionItem>
+                                                                        <AccordionItem value="item-5">
+                                                                                <AccordionTrigger>Will Hamma ever ask for my password?</AccordionTrigger>
+                                                                                <AccordionContent>
+                                                                                        No, Hamma staff will never ask for your password. Be very careful if anyone asks for your password, as this is a common way for scammers to get into accounts.
+                                                                                </AccordionContent>
+                                                                        </AccordionItem>
+                                                                        <AccordionItem value="item-6">
+                                                                                <AccordionTrigger>How do I report a security issue?</AccordionTrigger>
+                                                                                <AccordionContent>
+                                                                                        If you find a security problem or something you think is a risk, please report it to our security team immediately through our official contact channels.
+                                                                                </AccordionContent>
+                                                                        </AccordionItem>
+                                                                        <AccordionItem value="item-7">
+                                                                                <AccordionTrigger>Is my personal information safe with Hamma?</AccordionTrigger>
+                                                                                <AccordionContent>
+                                                                                        Yes, we use advanced security measures and strict privacy policies to protect your personal information. We do not share your details with anyone without your consent, except as required by law.
+                                                                                </AccordionContent>
+                                                                        </AccordionItem>
+                                                                        <AccordionItem value="item-8">
+                                                                                <AccordionTrigger>Why should I use a strong password?</AccordionTrigger>
+                                                                                <AccordionContent>
+                                                                                        A strong password is difficult for others to guess or for computers to figure out. Using a mix of different types of characters makes your account much more secure.
+                                                                                </AccordionContent>
+                                                                        </AccordionItem>
+                                                                        <AccordionItem value="item-9">
+                                                                                <AccordionTrigger>What is a "phishing" scam?</AccordionTrigger>
+                                                                                <AccordionContent>
+                                                                                        A phishing scam is when someone tries to trick you into giving them your personal information (like passwords) by pretending to be Hamma. Always check the sender's email address and make sure the website link is correct before you log in.
+                                                                                </AccordionContent>
+                                                                        </AccordionItem>
+                                                                        <AccordionItem value="item-10">
+                                                                                <AccordionTrigger>What are the signs of a suspicious email from Hamma?</AccordionTrigger>
+                                                                                <AccordionContent>
+                                                                                        Look out for spelling mistakes, an unusual sender email address, urgent requests for your personal information, or links that do not lead to the official Hamma website. When in doubt, do not click the link and contact us directly.
                                                                                 </AccordionContent>
                                                                         </AccordionItem>
                                                                 </Accordion>
