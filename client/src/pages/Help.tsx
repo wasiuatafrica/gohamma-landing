@@ -717,7 +717,7 @@ const HelpPage = () => {
                                                                                 <p className="text-muted-foreground mb-4">
                                                                                         Send us an email and we'll respond within 24 hours
                                                                                 </p>
-                                                                                <p className="font-medium">hello@hamma.trade</p>
+                                                                                <p className="font-medium">traders@gohamma.com</p>
                                                                         </div>
                                                                 </CardContent>
                                                         </Card>

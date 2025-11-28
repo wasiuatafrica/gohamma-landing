@@ -55,9 +55,9 @@ const Footer = () => {
                 <span>Adepate House, 42 Montgomery Rd, Yaba Lagos, Nigeria</span>
               </li> */}
               <li >
-                <a className="flex items-start hover:underline" href="mailto:hello@hamma.trade" >
+                <a className="flex items-start hover:underline" href="mailto:traders@gohamma.com" >
                 <Mail className="mt-1 mr-3 text-primary min-h-4 min-w-4" />
-                <span>hello@hamma.trade</span>
+                <span>traders@gohamma.com</span>
                 </a>
               </li>
 
