@@ -94,7 +94,7 @@ const DisclaimerPage = () => {
                 If you have any questions about this Disclaimer, please contact us:
               </p>
               <ul>
-                <li>Email: hello@hamma.trade</li>
+                <li>Email: traders@gohamma.com</li>
                 <li>Phone: +234 906 556 6388</li>
                 {/* <li>Address: Adepate House, 42 Montgomery Rd, Yaba Lagos, Nigeria</li> */}
               </ul>

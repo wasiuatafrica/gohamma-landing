@@ -87,7 +87,7 @@ const CookiePage = () => {
                 If you have any questions about our use of cookies or other technologies, please contact us at:
               </p>
               <ul>
-                <li>Email: hello@hamma.trade</li>
+                <li>Email: traders@gohamma.com</li>
                 <li>Phone: +234 906 556 6388</li>
                 {/* <li>Address: Adepate House, 42 Montgomery Rd, Yaba Lagos</li> */}
               </ul>

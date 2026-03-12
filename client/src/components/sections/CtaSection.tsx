@@ -63,7 +63,9 @@ const CtaSection = () => {
           </Card>
           
           <Button size="lg" className="px-8" asChild>
+
             <a href="https://www.gohamma.com/register?source=landing" target="_blank" rel="noopener noreferrer">Get Started Now</a>
+
           </Button>
         </div>
       </div>

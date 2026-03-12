@@ -93,7 +93,7 @@ const TermsPage = () => {
                 If you have any questions about these Terms, please contact us at:
               </p>
               <ul>
-                <li>Email: hello@hamma.trade</li>
+                <li>Email: traders@gohamma.com</li>
                 <li>Phone: +234 906 556 6388</li>
                 {/* <li>Address: 12th Floor, Victoria Island Tower, 1234 Adeola Odeku Street, Victoria Island, Lagos, Nigeria</li> */}
               </ul>
